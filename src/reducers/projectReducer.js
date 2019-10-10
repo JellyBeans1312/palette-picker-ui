@@ -6,3 +6,12 @@ export const projectReducer = (state = '', action) => {
       return state;
   }
 }
+
+export const allProjectsReducer = (state=[], action) => {
+  switch(action.type) {
+    case 'ADD_ALL_PROJECTS':
+      return action.allProjects
+    default:
+      return state;
+  }
+}
