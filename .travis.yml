@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- node
+services:
+
+before_script:
+
+notifications:
+  email: false
+deploy:
+  provider: heroku
+  app: palette-picker-fe-eo-am
+  api_key:
+    secure: 
