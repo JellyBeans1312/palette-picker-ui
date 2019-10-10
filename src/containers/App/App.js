@@ -1,22 +1,33 @@
 import React, { Component } from 'react';
 import CreateProjectForm from '../CreateProjectForm/CreateProjectForm';
 import { connect } from 'react-redux';
+import { getAllProjects } from '../../util/apiCalls'
+import { addAllProjects } from '../../actions'
 import './App.css';
 
 class App extends Component {
 
+  componentDidMount = async () => {
+    const allProjects = await getAllProjects()
+    this.props.addAllProjects(allProjects)
+  }
+
   render() {
-    const { project } = this.props;
+    const { allProjects } = this.props;
     return (
       <>
-      {!project && <CreateProjectForm />}
+      {!allProjects && <CreateProjectForm />}
       </>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  project: state.project
+  allProjects: state.allProjects
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  addAllProjects: allProjects => dispatch(addAllProjects(allProjects))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
