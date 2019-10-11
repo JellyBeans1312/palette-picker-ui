@@ -4,9 +4,9 @@ import ColorRhombus from '../../components/ColorRhombus/ColorRhombus';
 import './ColorContainer.css';
 
 const ColorContainer = ({ generateNewColors, colors }) => {
-  console.log('COLORS', colors)
   const colorRhombi = colors.map(color => {
-    return <ColorRhombus hexCode={color.color}/>
+    console.log('COLOR', color)
+    return <ColorRhombus color={color.color}/>
   });
 
   return (

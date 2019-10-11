@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import CreateProjectForm from '../CreateProjectForm/CreateProjectForm';
 import ColorContainer from '../ColorContainer/ColorContainer';
 import { connect } from 'react-redux';
-import { getAllProjects } from '../../util/apiCalls'
-import { addAllProjects, saveColors } from '../../actions'
+import { getAllProjects } from '../../util/apiCalls';
+import { addAllProjects, saveColor, lockColor } from '../../actions';
 import './App.css';
 
 class App extends Component {
@@ -17,7 +17,7 @@ class App extends Component {
   componentDidMount = async () => {
     const allProjects = await getAllProjects()
     this.props.addAllProjects(allProjects)
-    this.hexCodeGenerator(this.state.colors)
+    this.hexCodeGenerator(this.props.colors)
   }
 
   hexCodeGenerator = (colors) => {
@@ -25,29 +25,27 @@ class App extends Component {
       return colors;
     }
 
-    let randomColor = { color: '#' + (Math.random() * 0xFFFFFF << 0).toString(16), isLocked: false};
+    let randomColor = { color: '#' + (Math.random() * 0xFFFFFF << 0).toString(16), isLocked: false };
     if (randomColor.color.length < 7) {
-      randomColor = { color: '#' + (Math.random() * 0xFFFFFF << 0).toString(16), isLocked: false}
+      randomColor = { color: '#' + (Math.random() * 0xFFFFFF << 0).toString(16), isLocked: false }
     }
-    if(this.state.colors.length < 5) {
-      this.setState({colors: [...this.state.colors, randomColor]});
+    if(this.props.colors.length < 5) {
+      this.props.saveColor(randomColor)
     } 
 
-    return this.hexCodeGenerator(this.state.colors);
+    return this.hexCodeGenerator(this.props.colors);
   }
 
   generateNewColors = () => {
-    let updatedColors = this.state.colors.map(color => {
-      console.log(color.color)
+    let updatedColors = this.props.colors.map(color => {
       if(color.isLocked) {
-
+        return color
       } else {
-        console.log(color.color)
         return { color: '#' + (Math.random() * 0xFFFFFF << 0).toString(16), isLocked: false }
       }
     });
     console.log('UPDATED COLORS', updatedColors)
-    this.setState({ colors: updatedColors })
+    this.props.saveColor(updatedColors)
   }
 
   render() {
@@ -55,19 +53,21 @@ class App extends Component {
     return (
       <main>
       {!allProjects && <CreateProjectForm />}
-      <ColorContainer generateNewColors={this.generateNewColors} colors={this.state.colors}/>
+      <ColorContainer generateNewColors={this.generateNewColors} colors={this.props.colors}/>
       </main>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  allProjects: state.allProjects
+  allProjects: state.allProjects,
+  colors: state.colors
 });
 
 const mapDispatchToProps = dispatch => ({
   addAllProjects: allProjects => dispatch(addAllProjects(allProjects)),
-  saveColors: colors => dispatch(saveColors(colors))
-})
+  saveColor: color => dispatch(saveColor(color)),
+  lockColor: color => dispatch(lockColor(color))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

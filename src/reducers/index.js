@@ -5,7 +5,7 @@ import { colorsReducer } from './colorsReducer';
 const rootReducer = combineReducers({
   project: projectReducer,
   allProjects: allProjectsReducer,
-  colors: colorsReducer
+  colors: colorsReducer,
 });
 
 export default rootReducer;
