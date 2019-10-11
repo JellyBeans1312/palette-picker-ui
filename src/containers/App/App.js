@@ -3,7 +3,7 @@ import CreateProjectForm from '../CreateProjectForm/CreateProjectForm';
 import ColorContainer from '../ColorContainer/ColorContainer';
 import { connect } from 'react-redux';
 import { getAllProjects } from '../../util/apiCalls';
-import { addAllProjects, saveColor, lockColor } from '../../actions';
+import { addAllProjects, saveColor } from '../../actions';
 import './App.css';
 
 class App extends Component {
@@ -24,7 +24,6 @@ class App extends Component {
     if (colors.length > 4) {
       return colors;
     }
-
     let randomColor = { color: '#' + (Math.random() * 0xFFFFFF << 0).toString(16), isLocked: false };
     if (randomColor.color.length < 7) {
       randomColor = { color: '#' + (Math.random() * 0xFFFFFF << 0).toString(16), isLocked: false }
@@ -44,7 +43,6 @@ class App extends Component {
         return { color: '#' + (Math.random() * 0xFFFFFF << 0).toString(16), isLocked: false }
       }
     });
-    console.log('UPDATED COLORS', updatedColors)
     this.props.saveColor(updatedColors)
   }
 
@@ -66,8 +64,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addAllProjects: allProjects => dispatch(addAllProjects(allProjects)),
-  saveColor: color => dispatch(saveColor(color)),
-  lockColor: color => dispatch(lockColor(color))
+  saveColor: color => dispatch(saveColor(color))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
