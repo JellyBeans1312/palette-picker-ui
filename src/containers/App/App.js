@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CreateProjectForm from '../CreateProjectForm/CreateProjectForm';
 import ColorContainer from '../ColorContainer/ColorContainer';
+import AddNewProjectForm from '../AddNewProjectForm/AddNewProjectForm'
 import { connect } from 'react-redux';
 import { getAllProjects } from '../../util/apiCalls';
 import { addAllProjects, saveColor } from '../../actions';
@@ -52,6 +53,7 @@ class App extends Component {
       <main>
       {!allProjects && <CreateProjectForm />}
       <ColorContainer generateNewColors={this.generateNewColors} colors={this.props.colors}/>
+      <AddNewProjectForm />
       </main>
     )
   }
