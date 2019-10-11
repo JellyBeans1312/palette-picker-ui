@@ -26,6 +26,7 @@ export class AddNewProjectForm extends Component {
     this.props.addProject(project)
     const allProjects =  await getAllProjects()
     this.props.addAllProjects(allProjects)
+    this.setState({projectName: ''})
   }
 
   render() {

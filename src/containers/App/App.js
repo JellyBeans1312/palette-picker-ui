@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { getAllProjects } from '../../util/apiCalls';
 import { addAllProjects, saveColor } from '../../actions';
 import './App.css';
+import ProjectContainer from '../ProjectContainer/ProjectContainer';
 
 class App extends Component {
   constructor() {
@@ -54,6 +55,7 @@ class App extends Component {
       {!allProjects && <CreateProjectForm />}
       <ColorContainer generateNewColors={this.generateNewColors} colors={this.props.colors}/>
       <AddNewProjectForm />
+      <ProjectContainer/>
       </main>
     )
   }
