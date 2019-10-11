@@ -5,7 +5,6 @@ import './ColorContainer.css';
 
 const ColorContainer = ({ generateNewColors, colors }) => {
   const colorRhombi = colors.map(color => {
-    console.log('COLOR', color)
     return <ColorRhombus color={color.color}/>
   });
 
