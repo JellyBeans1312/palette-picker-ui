@@ -8,7 +8,12 @@ export const addAllProjects = allProjects => ({
   allProjects
 });
 
-export const saveColors = colors => ({
-  type: 'SAVE_COLORS',
-  colors
+export const saveColor = color => ({
+  type: 'SAVE_COLOR',
+  color
+});
+
+export const lockColor = color => ({
+  type: 'LOCK_COLOR',
+  color
 });
