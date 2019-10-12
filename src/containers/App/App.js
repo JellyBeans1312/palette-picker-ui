@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import CreateProjectForm from '../CreateProjectForm/CreateProjectForm';
 import ColorContainer from '../ColorContainer/ColorContainer';
-import AddNewProjectForm from '../AddNewProjectForm/AddNewProjectForm'
+import AddNewProjectForm from '../AddNewProjectForm/AddNewProjectForm';
+import CreatePaletteForm from '../CreatePaletteForm/CreatePaletteForm';
 import { connect } from 'react-redux';
 import { getAllProjects, getAllPalettes } from '../../util/apiCalls';
 import { addAllProjects, saveColor, addAllPalettes } from '../../actions';
@@ -50,12 +51,17 @@ class App extends Component {
     this.props.saveColor(updatedColors)
   }
 
+  savePalette = (colors) => {
+
+  }
+
   render() {
     const { allProjects } = this.props;
     return (
       <main>
       {!allProjects && <CreateProjectForm />}
-      <ColorContainer generateNewColors={this.generateNewColors} colors={this.props.colors}/>
+      <ColorContainer generateNewColors={this.generateNewColors} colors={this.props.colors} />
+      <CreatePaletteForm />
       <AddNewProjectForm />
       <ProjectContainer/>
       </main>
