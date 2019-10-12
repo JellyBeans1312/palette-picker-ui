@@ -1,11 +1,12 @@
 import React from 'react';
 import './Project.css';
-import { addPalette, removePalette } from '../../actions';
+import { addPalette, removePalette, removeProject } from '../../actions';
 import { connect } from 'react-redux';
-import trashcan from '../../assets/trashcan2.svg';
-import { deletePalette } from '../../util/apiCalls'
+import trashcan from '../../assets/trashcan.svg';
+import xImage from '../../assets/xImage.svg'
+import { deletePalette, deleteProject } from '../../util/apiCalls'
 
-const Project = ({props, palettes, addPalette, removePalette}) => {
+const Project = ({props, palettes, addPalette, removePalette, removeProject}) => {
   const displayPalettes = palettes.map(palette => {
     const { updated_at, created_at, palette_name, project_id, id, ...newPalette } = palette
     let keys = Object.keys(newPalette);
@@ -23,10 +24,16 @@ const Project = ({props, palettes, addPalette, removePalette}) => {
     )
   })
 
-  const { project_name } = props    
+  const { project_name, id } = props    
+
   return (
     <div>
+      <div>
+
       {project_name}
+      <img src={xImage} style={{ height: 30, width: 30}} onClick={() => {deleteProject(id); removeProject(id)}}></img>
+
+      </div>
       {displayPalettes}
     </div>
   )
@@ -34,7 +41,8 @@ const Project = ({props, palettes, addPalette, removePalette}) => {
 
 export const mapDispatchToProps = dispatch => ({
   addPalette: palette => dispatch(addPalette(palette)),
-  removePalette: id => dispatch(removePalette(id))
-})
+  removePalette: id => dispatch(removePalette(id)),
+  removeProject: id => dispatch(removeProject(id))
+});
 
 export default connect(null, mapDispatchToProps)(Project);

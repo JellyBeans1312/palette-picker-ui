@@ -73,7 +73,7 @@ export const deleteProject = async (id) => {
   }
   const response = await fetch(`https://palette-picker-be-eo-am.herokuapp.com/api/v1/projects/${id}`, options)
   if(!response.ok) {
-    throw Error('There was an error deleting your palette. Please try again.')
+    throw Error('There was an error deleting your project. Please try again.')
   }
   return response.status
 }
