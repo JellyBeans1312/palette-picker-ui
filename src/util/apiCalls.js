@@ -63,8 +63,8 @@ export const deletePalette = async (id) => {
   if(!response.ok) {
     throw Error('There was an error deleting your palette. Please try again.')
   }
-  const data = await response.json();
-  return data;
+
+  return response.status;
 }
 
 export const deleteProject = async (id) => {
@@ -75,6 +75,5 @@ export const deleteProject = async (id) => {
   if(!response.ok) {
     throw Error('There was an error deleting your palette. Please try again.')
   }
-  const data = await response.json();
-  return data;
+  return response.status
 }
