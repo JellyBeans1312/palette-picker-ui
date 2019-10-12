@@ -7,7 +7,6 @@ export const ColorRhombus = (props) => {
   const color = props.color
   return (
     <div style={{ backgroundColor: props.color, height: 100, width: 100 }}>
-      <p>{color}</p>
       <button onClick={() => props.lockColor(color)}>Lock</button>
     </div>
   )

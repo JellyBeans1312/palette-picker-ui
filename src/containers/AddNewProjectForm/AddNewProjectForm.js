@@ -8,7 +8,8 @@ export class AddNewProjectForm extends Component {
   constructor() {
     super();
     this.state = {
-      projectName: ''
+      projectName: '',
+      error: ''
     }
   }
 
@@ -21,17 +22,21 @@ export class AddNewProjectForm extends Component {
     const newProject = {
       project_name: this.state.projectName
     }
-
-    const project = await createProject(newProject)
-    this.props.addProject(project)
-    const allProjects =  await getAllProjects()
-    this.props.addAllProjects(allProjects)
-    this.setState({projectName: ''})
+    try {
+      const project = await createProject(newProject);
+      this.props.addProject(project);
+    } catch (error) {
+      this.setState({ error: error.message })
+    }
+    const allProjects =  await getAllProjects();
+    this.props.addAllProjects(allProjects);
+    this.setState({projectName: ''});
   }
 
   render() {
     return (
       <form> 
+        {this.state.error && <p>{this.state.error}</p>}
         <input 
           type='text'
           name='projectName'
