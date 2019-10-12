@@ -53,3 +53,28 @@ export const createPalette = async (newPalette) => {
   const data = await response.json();
   return data;
 }
+
+export const deletePalette = async (id) => {
+  const options = {
+    method: 'DELETE'
+  }
+
+  const response = await fetch(`https://palette-picker-be-eo-am.herokuapp.com/api/v1/palettes/${id}`, options)
+  if(!response.ok) {
+    throw Error('There was an error deleting your palette. Please try again.')
+  }
+  const data = await response.json();
+  return data;
+}
+
+export const deleteProject = async (id) => {
+  const options = {
+    method: 'DELETE'
+  }
+  const response = await fetch(`https://palette-picker-be-eo-am.herokuapp.com/api/v1/projects/${id}`, options)
+  if(!response.ok) {
+    throw Error('There was an error deleting your palette. Please try again.')
+  }
+  const data = await response.json();
+  return data;
+}
