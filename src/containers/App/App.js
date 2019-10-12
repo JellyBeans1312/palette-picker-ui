@@ -3,8 +3,8 @@ import CreateProjectForm from '../CreateProjectForm/CreateProjectForm';
 import ColorContainer from '../ColorContainer/ColorContainer';
 import AddNewProjectForm from '../AddNewProjectForm/AddNewProjectForm'
 import { connect } from 'react-redux';
-import { getAllProjects } from '../../util/apiCalls';
-import { addAllProjects, saveColor } from '../../actions';
+import { getAllProjects, getAllPalettes } from '../../util/apiCalls';
+import { addAllProjects, saveColor, addAllPalettes } from '../../actions';
 import './App.css';
 import ProjectContainer from '../ProjectContainer/ProjectContainer';
 
@@ -18,7 +18,9 @@ class App extends Component {
 
   componentDidMount = async () => {
     const allProjects = await getAllProjects()
+    const allPalettes = await getAllPalettes()
     this.props.addAllProjects(allProjects)
+    this.props.addAllPalettes(allPalettes)
     this.hexCodeGenerator(this.props.colors)
   }
 
@@ -68,7 +70,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addAllProjects: allProjects => dispatch(addAllProjects(allProjects)),
-  saveColor: color => dispatch(saveColor(color))
+  saveColor: color => dispatch(saveColor(color)),
+  addAllPalettes: allPalettes => dispatch(addAllPalettes(allPalettes))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

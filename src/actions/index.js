@@ -17,3 +17,8 @@ export const lockColor = color => ({
   type: 'LOCK_COLOR',
   color
 });
+
+export const addAllPalettes = palettes => ({
+  type: 'ADD_ALL_PALETTES',
+  palettes
+})
