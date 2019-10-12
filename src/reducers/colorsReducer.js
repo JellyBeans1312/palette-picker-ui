@@ -8,7 +8,6 @@ export const colorsReducer = (state = [], action) => {
       }
     case 'LOCK_COLOR':
       const updatedColors = state.map(colorObj => {
-        console.log('COLOROBJ', action)
         if(colorObj.color === action.color) {
           return {...colorObj, isLocked: !colorObj.isLocked}
         } else {
@@ -16,6 +15,13 @@ export const colorsReducer = (state = [], action) => {
         }
       })
       return updatedColors
+    case 'ADD_PALETTE':
+      const keys = Object.keys(action.palette) 
+      
+      let colors = keys.map(key => {
+        return { color: action.palette[key], isLocked: true}
+      });
+      return colors
     default: 
       return state;
   }

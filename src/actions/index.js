@@ -21,4 +21,10 @@ export const lockColor = color => ({
 export const addAllPalettes = palettes => ({
   type: 'ADD_ALL_PALETTES',
   palettes
-})
+});
+
+export const addPalette = (palette, projectId) => ({
+  type: 'ADD_PALETTE',
+  palette,
+  projectId
+});
