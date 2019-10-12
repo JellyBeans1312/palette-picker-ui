@@ -10,7 +10,6 @@ const ColorContainer = ({ generateNewColors, colors }) => {
   return (
     <section>
       {colors && colorRhombi}
-      {!colors && <p>Create a palette</p>}
       <button
       onClick={generateNewColors}
       >
