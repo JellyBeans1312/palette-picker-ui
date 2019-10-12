@@ -7,8 +7,10 @@ export const createProject = async (newProject) => {
     }
   }
   const response = await fetch('https://palette-picker-be-eo-am.herokuapp.com/api/v1/projects', options)
-  if(!response.ok) {
-    throw Error('There was an error creating your project. Please try again.')
+  if(!response.ok && response.status === 409) {
+    throw Error('That project name already exists. Please choose another name.')
+  } else if (!response.ok) {
+    throw Error('There was an issue creating your project. Please try again.')
   }
 
   const data = await response.json();
