@@ -23,8 +23,12 @@ export const addAllPalettes = palettes => ({
   palettes
 });
 
-export const addPalette = (palette, projectId) => ({
+export const addPalette = (palette) => ({
   type: 'ADD_PALETTE',
-  palette,
-  projectId
+  palette
 });
+
+export const removePalette = id => ({
+  type: 'REMOVE_PALETTE',
+  id
+})
