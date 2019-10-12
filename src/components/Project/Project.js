@@ -1,13 +1,17 @@
 import React from 'react';
 import './Project.css';
 
-const Project = ({props}) => {
+const Project = ({props, palettes}) => {
+  const displayPalettes = palettes.map(palette => {
+    return <li>{palette.palette_name}</li>
+  })
   const { project_name } = props
-  console.log(project_name)
+  console.log(props)
   
   return (
     <div>
       {project_name}
+      <ul>{displayPalettes}</ul>
     </div>
   )
 }

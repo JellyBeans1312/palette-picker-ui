@@ -4,10 +4,13 @@ import Project from '../../components/Project/Project'
 import { connect } from 'react-redux'
 
 
-const ProjectContainer = ({ allProjects }) =>
+const ProjectContainer = ({ allProjects, allPalettes }) =>
  {
   const projectList = allProjects.map(project => {
-    return <Project props={{...project}} />
+    let correspondingPalettes = allPalettes.filter(palette => {
+      return palette.project_id === project.id
+    }) 
+    return <Project props={{...project}} palettes={correspondingPalettes} />
   })
   return (
     <section>
@@ -17,7 +20,8 @@ const ProjectContainer = ({ allProjects }) =>
 }
 
 const mapStateToProps = state => ({
-  allProjects: state.allProjects
+  allProjects: state.allProjects,
+  allPalettes: state.allPalettes
 })
 
 export default connect(mapStateToProps)(ProjectContainer);

@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import ColorRhombus from '../../components/ColorRhombus/ColorRhombus';
 import './ColorContainer.css';
 
