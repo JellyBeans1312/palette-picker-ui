@@ -8,13 +8,17 @@ const ColorContainer = ({ generateNewColors, colors }) => {
   });
 
   return (
-    <section>
-      {colors && colorRhombi}
-      <button
-      onClick={generateNewColors}
-      >
+    <section className='color-container'>
+      <div className='color-container-div'>
+        {colors && colorRhombi}
+      </div>
+      <div className='button-container'>
+        <button className='generate-color-button'
+          onClick={generateNewColors}
+        >
         Generate a new palette!
-      </button>
+        </button>
+      </div>
     </section>
   )
 }

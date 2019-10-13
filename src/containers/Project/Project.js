@@ -11,9 +11,9 @@ const Project = ({props, palettes, addPalette, removePalette, removeProject, add
     const { updated_at, created_at, palette_name, project_id, id, ...newPalette } = palette
     let keys = Object.keys(newPalette);
     return  (
-      <div>
-        <ul>
-          <li>{palette.palette_name}
+      <div className='small-palettes'>
+        <ul className='small-palettes-ul'>
+          <li className='small-palettes'>{palette.palette_name}
             { keys.map(key => {
               return <div style={{ backgroundColor: newPalette[key], height: 20, width: 20 }}></div>
             })}
@@ -30,7 +30,7 @@ const Project = ({props, palettes, addPalette, removePalette, removeProject, add
 
   return (
     <div>
-      <div>
+      <div className='project-header'>
         <div>
           {project_name}
           <button onClick={() => addProject(project_name, id)}>Select this project</button>

@@ -91,3 +91,14 @@ export const patchProject = async (project_name, id) => {
   const data = await response.json();
   return data;
 }
+
+export const searchSpecificPalette = async (paletteName) => {
+  const response = await fetch(`https://palette-picker-be-eo-am.herokuapp.com/api/v1/palettes?palette_name=${paletteName}`)
+  if(!response.ok) {
+    throw Error('There was an error getting your palette. Please try again.')
+  }
+  const data = await response.json();
+  const { id, palette_name, created_at, updated_at, ...newPalette } = data[0];
+  console.log(newPalette)
+  return newPalette
+}

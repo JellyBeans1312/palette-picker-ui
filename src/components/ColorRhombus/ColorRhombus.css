@@ -1,0 +1,5 @@
+.color-rhombus {
+  height: 80%;
+  width: 20rem;
+  transform: skew(-20deg);
+}

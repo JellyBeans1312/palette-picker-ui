@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { createPalette, getAllProjects, getAllPalettes } from '../../util/apiCalls';
-import { addAllProjects, addAllPalettes } from '../../actions/index';
+import { createPalette, getAllProjects, getAllPalettes, searchSpecificPalette } from '../../util/apiCalls';
+import { addAllProjects, addAllPalettes, addPalette, addProject } from '../../actions/index';
 import { connect } from 'react-redux';
 import './CreatePaletteForm.css';
 
@@ -8,7 +8,8 @@ export class CreatePaletteForm extends Component {
   constructor() {
     super();
     this.state = {
-      paletteName: ''
+      paletteName: '',
+      searchPaletteName: ''
     }
   }
 
@@ -36,14 +37,27 @@ export class CreatePaletteForm extends Component {
     addAllPalettes(allPalettes);
     this.clearInput();
   }
+
+  searchPalette = async (e) => {
+    e.preventDefault()
+    
+    const palette = await searchSpecificPalette(this.state.searchPaletteName)
+    const { project_id, ...newPalette } = palette
+    this.props.addPalette(newPalette);
+
+    const correspondingProject = this.props.allProjects.filter(project => project.id === palette.project_id)
+    this.props.addProject(correspondingProject[0].project_name, correspondingProject[0].id)
+
+    this.clearInput()
+  }
   
   clearInput = () => {
-    this.setState({paletteName: ''});
+    this.setState({paletteName: '', searchPaletteName: ''});
   }
 
   render() {
     return (
-      <form>
+      <form className='palette-form'>
         <input
           type = 'text'
           value = {this.state.paletteName}
@@ -59,6 +73,14 @@ export class CreatePaletteForm extends Component {
         Save palette to current project.
         </button>
         }
+        <input 
+          type='text'
+          value={this.state.searchPaletteName}
+          onChange={this.handleChange}
+          placeholder='Search a for a palette'
+          name='searchPaletteName'
+        />
+        <button onClick={this.searchPalette}>Search!</button>
       </form>
     )
   }
@@ -66,12 +88,15 @@ export class CreatePaletteForm extends Component {
 
 export const mapDispatchToProps = dispatch => ({
   addAllProjects: allProjects => dispatch(addAllProjects(allProjects)),
-  addAllPalettes: allPalettes => dispatch(addAllPalettes(allPalettes))
+  addAllPalettes: allPalettes => dispatch(addAllPalettes(allPalettes)),
+  addPalette: palette => dispatch(addPalette(palette)),
+  addProject: (projectName, id) => dispatch(addProject(projectName, id))
 });
 
 export const mapStateToProps = state => ({
   colors: state.colors,
-  project: state.project
+  project: state.project,
+  allProjects: state.allProjects
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePaletteForm);
