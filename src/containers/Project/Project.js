@@ -3,7 +3,7 @@ import './Project.css';
 import { addPalette, removePalette, removeProject, addProject } from '../../actions';
 import { connect } from 'react-redux';
 import trashcan from '../../assets/trashcan.svg';
-import xImage from '../../assets/xImage.svg'
+import editIcon from '../../assets/editIcon.svg'
 import { deletePalette, deleteProject } from '../../util/apiCalls'
 
 const Project = ({props, palettes, addPalette, removePalette, removeProject, addProject}) => {
@@ -12,7 +12,7 @@ const Project = ({props, palettes, addPalette, removePalette, removeProject, add
     let keys = Object.keys(newPalette);
     return  (
       <div>
-        <ul onClick={() => addPalette(newPalette)}>
+        <ul>
           <li>{palette.palette_name}
             { keys.map(key => {
               return <div style={{ backgroundColor: newPalette[key], height: 20, width: 20 }}></div>
@@ -20,6 +20,8 @@ const Project = ({props, palettes, addPalette, removePalette, removeProject, add
           </li>
         </ul>
         <img src={trashcan} style={{ height: 30, width: 30}} onClick={() => {deletePalette(palette.id); removePalette(palette.id)}}></img>
+        <img src={editIcon}  style={{ height: 30, width: 30}} onClick={() => addPalette(newPalette)}/>
+
       </div>
     )
   })
@@ -29,8 +31,11 @@ const Project = ({props, palettes, addPalette, removePalette, removeProject, add
   return (
     <div>
       <div>
-        <div onClick={() => addProject(project_name, id)}>{project_name}</div>
-      <img src={xImage} style={{ height: 30, width: 30}} onClick={() => {deleteProject(id); removeProject(id)}}></img>
+        <div>
+          {project_name}
+          <button onClick={() => addProject(project_name, id)}>Select this project</button>
+        </div>
+      <img src={trashcan} style={{ height: 30, width: 30}} onClick={() => {deleteProject(id); removeProject(id)}}></img>
       </div>
       {displayPalettes}
     </div>

@@ -44,9 +44,7 @@ export const createPalette = async (newPalette) => {
       "Content-Type": "application/json"
     }
   }
-  console.log('OPTIONS ARE HERE', options)
   const response = await fetch('https://palette-picker-be-eo-am.herokuapp.com/api/v1/palettes', options)
-  console.log('RESPONSE IS HERE', response)
   if(!response.ok) {
     throw Error('There was an error creating your palette. Please try again.')
   }
@@ -76,4 +74,20 @@ export const deleteProject = async (id) => {
     throw Error('There was an error deleting your project. Please try again.')
   }
   return response.status
+}
+
+export const patchProject = async (project_name, id) => {
+  const options = {
+    method: 'PATCH',
+    body: JSON.stringify(project_name),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }
+  const response = await fetch(`https://palette-picker-be-eo-am.herokuapp.com/api/v1/projects/${id}`, options)
+  if(!response.ok) {
+    throw Error('There was an error editing your project. Please try again.')
+  }
+  const data = await response.json();
+  return data;
 }
