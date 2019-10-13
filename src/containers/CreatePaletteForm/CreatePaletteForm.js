@@ -52,11 +52,13 @@ export class CreatePaletteForm extends Component {
           name = 'paletteName'
         >
         </input>
+        {this.props.project && this.state.paletteName &&
         <button
           onClick={(e) => this.savePalette(e)}
         >
         Save palette to current project.
         </button>
+        }
       </form>
     )
   }
