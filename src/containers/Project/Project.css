@@ -1,0 +1,13 @@
+.project-header {
+  display: flex;
+}
+
+.small-palettes {
+  display:flex;
+}
+
+.small-palettes-ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}

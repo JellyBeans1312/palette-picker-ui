@@ -13,7 +13,7 @@ const ProjectContainer = ({ allProjects, allPalettes }) =>
     return <Project props={{...project}} palettes={correspondingPalettes} />
   })
   return (
-    <section>
+    <section className='project-container'>
       {projectList}
     </section>
   )

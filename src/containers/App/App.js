@@ -14,7 +14,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      editedProjectName: ''
+      editedProjectName: '',
+      error: ''
     }
   }
 
@@ -56,21 +57,27 @@ class App extends Component {
 
   // }
 
-  updateProjectName = async () => {
-    const { name } = this.state.editedProjectName
-    const { id } = this.props.project.id
-    patchProject(name,id)
+  updateProjectName = async (name, id) => {
+    // const { name } = this.state.editedProjectName
+    // const { id } = this.props.project.id
+    console.log(name, id)
+
+    try {
+      patchProject(name,id)
+      this.props.updateProjectName(false)
+    } catch (error) {
+      this.setState({ error })
+    }
+
   }
 
   handleChange = e => {
     this.setState({editedProjectName: e.target.value})
-    console.log(this.state.editedProjectName)
   }
   render() {
     const { allProjects, project } = this.props;
-    console.log('project', project)
     return (
-      <main>
+      <main className='main'>
       {!allProjects && <CreateProjectForm />}
       {project &&  
         <div>
@@ -79,15 +86,17 @@ class App extends Component {
           { this.props.editingProjectName &&
           <div>
             <input type='text' placeholder={project.project_name} value={this.state.editedProjectName} onChange={this.handleChange}/>
-            <button onClick={() => {this.props.addProject(this.state.editedProjectName, project.id); this.updateProjectName()}}>Update Project Name</button> 
+            <button onClick={() => {this.props.addProject(this.state.editedProjectName, project.id); this.updateProjectName(this.state.editedProjectName, project.id)}}>Update Project Name</button> 
           </div>
           }
         </div>
         }
       <ColorContainer generateNewColors={this.generateNewColors} colors={this.props.colors} />
-      <CreatePaletteForm />
-      <AddNewProjectForm />
       <ProjectContainer/>
+      <div className='form-container'>
+        <AddNewProjectForm />
+        <CreatePaletteForm />
+      </div>
       </main>
     )
   }

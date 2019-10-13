@@ -1,0 +1,22 @@
+.color-container {
+  background-color: green;
+  display: flex;
+  width: 100%;
+}
+
+.color-container-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.button-container {
+  flex-direction: column;
+}
+
+.generate-color-button {
+  height: 30px;
+  width: 60px;
+  align-self: flex-end;
+}

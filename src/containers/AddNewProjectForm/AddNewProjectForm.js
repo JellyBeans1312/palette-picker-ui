@@ -36,7 +36,7 @@ export class AddNewProjectForm extends Component {
 
   render() {
     return (
-      <form> 
+      <form className='new-project-form'> 
         {this.state.error && <p>{this.state.error}</p>}
         <input 
           type='text'
