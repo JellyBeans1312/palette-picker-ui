@@ -24,7 +24,8 @@ export class AddNewProjectForm extends Component {
     }
     try {
       const project = await createProject(newProject);
-      this.props.addProject(project);
+      console.log('PROJECT', project.id)
+      this.props.addProject(this.state.projectName, project.id);
     } catch (error) {
       this.setState({ error: error.message })
     }
@@ -51,7 +52,7 @@ export class AddNewProjectForm extends Component {
 }
 
 export const mapDispatchToProps = dispatch => ({
-  addProject: project => dispatch(addProject(project)),
+  addProject: (project_name, id) => dispatch(addProject(project_name, id)),
   addAllProjects: allProjects => dispatch(addAllProjects(allProjects))
 })
 

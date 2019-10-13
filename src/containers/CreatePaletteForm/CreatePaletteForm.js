@@ -34,6 +34,11 @@ export class CreatePaletteForm extends Component {
     addAllProjects(allProjects);
     const allPalettes = await getAllPalettes();
     addAllPalettes(allPalettes);
+    this.clearInput();
+  }
+  
+  clearInput = () => {
+    this.setState({paletteName: ''});
   }
 
   render() {

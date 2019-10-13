@@ -1,6 +1,6 @@
 import React from 'react';
 import './ProjectContainer.css';
-import Project from '../../components/Project/Project'
+import Project from '../Project/Project'
 import { connect } from 'react-redux'
 
 

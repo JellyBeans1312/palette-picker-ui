@@ -60,6 +60,7 @@ class App extends Component {
     return (
       <main>
       {!allProjects && <CreateProjectForm />}
+      {this.props.project && <p>Selected project: {this.props.project.project_name}</p>}
       <ColorContainer generateNewColors={this.generateNewColors} colors={this.props.colors} />
       <CreatePaletteForm />
       <AddNewProjectForm />
@@ -70,6 +71,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
+  project: state.project,
   allProjects: state.allProjects,
   colors: state.colors
 });
