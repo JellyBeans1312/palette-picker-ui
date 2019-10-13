@@ -17,3 +17,12 @@ export const allProjectsReducer = (state=[], action) => {
       return state;
   }
 }
+
+export const editProjectNameReducer = (state = false, action) => {
+  switch(action.type) {
+    case 'UPDATE_PROJECT_NAME':
+      return action.status
+    default:
+      return state
+  }
+}
