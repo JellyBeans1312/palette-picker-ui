@@ -22,7 +22,7 @@ export class CreateProjectForm extends Component {
       project_name: this.state.projectName
     }
     const createdProjectId = await createProject(newProject);
-    this.props.addProject(createdProjectId)
+    this.props.addProject(this.state.projectName, createdProjectId);
     // this.clearInput()
   }
 
@@ -52,7 +52,7 @@ export class CreateProjectForm extends Component {
 }
 
 export const mapDispatchToProps = dispatch => ({
-  addProject: createdProjectId => dispatch(addProject(createdProjectId))
+  addProject: (projectName, createdProjectId )=> dispatch(addProject(projectName, createdProjectId))
 });
 
 export default connect(null, mapDispatchToProps)(CreateProjectForm);

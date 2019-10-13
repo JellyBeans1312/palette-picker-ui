@@ -1,6 +1,7 @@
-export const addProject = id => ({
+export const addProject = (project_name, id) => ({
   type: 'ADD_PROJECT',
-  id
+  id,
+  project_name
 });
 
 export const addAllProjects = allProjects => ({
@@ -23,7 +24,7 @@ export const addAllPalettes = palettes => ({
   palettes
 });
 
-export const addPalette = (palette) => ({
+export const addPalette = palette => ({
   type: 'ADD_PALETTE',
   palette
 });
