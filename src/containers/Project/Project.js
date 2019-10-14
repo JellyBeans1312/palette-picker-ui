@@ -8,7 +8,7 @@ import { deletePalette, deleteProject } from '../../util/apiCalls'
 
 const Project = ({props, palettes, addPalette, removePalette, removeProject, addProject}) => {
   const displayPalettes = palettes.map(palette => {
-    const { updated_at, created_at, palette_name, project_id, id, ...newPalette } = palette
+    const { updated_at, created_at, palette_name, project_id, ...newPalette } = palette
     let keys = Object.keys(newPalette);
     return  (
       <div className='small-palettes'>
