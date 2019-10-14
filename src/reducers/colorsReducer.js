@@ -16,10 +16,11 @@ export const colorsReducer = (state = [], action) => {
       })
       return updatedColors
     case 'ADD_PALETTE':
-      const keys = Object.keys(action.palette) 
-      
+      const paletteId = action.palette.id
+      const { id, ...newPalette } = action.palette
+      const keys = Object.keys(newPalette) 
       let colors = keys.map(key => {
-        return { color: action.palette[key], isLocked: true}
+        return { color: action.palette[key], isLocked: true, id: paletteId }
       });
       return colors
     default: 

@@ -2,7 +2,7 @@ import React from 'react';
 import ColorRhombus from '../../components/ColorRhombus/ColorRhombus';
 import './ColorContainer.css';
 
-const ColorContainer = ({ generateNewColors, colors }) => {
+const ColorContainer = ({ generateNewColors, colors, updatePalette }) => {
   const colorRhombi = colors.map(color => {
     return <ColorRhombus color={color.color}/>
   });
@@ -18,6 +18,7 @@ const ColorContainer = ({ generateNewColors, colors }) => {
         >
         Generate a new palette!
         </button>
+        <button onClick={updatePalette}>Update Palette</button>
       </div>
     </section>
   )

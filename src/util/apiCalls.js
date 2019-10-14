@@ -92,6 +92,23 @@ export const patchProject = async (project_name, id) => {
   return data;
 }
 
+export const patchPalette = async (palette) => {
+  const options = {
+    method: 'PATCH',
+    body: JSON.stringify(palette),
+    headers: {
+      "Content-Type": "application/json",
+    }
+  }
+  const { id } = palette;
+  const response = await fetch(`https://palette-picker-be-eo-am.herokuapp.com/api/v1/palettes/${id}`, options)
+  if(!response.ok) {
+    throw Error('There was an error editing your palette. Please try again.')
+  }
+  const data = await response.json();
+  return data;
+}
+
 export const searchSpecificPalette = async (paletteName) => {
   const response = await fetch(`https://palette-picker-be-eo-am.herokuapp.com/api/v1/palettes?palette_name=${paletteName}`)
   if(!response.ok) {
