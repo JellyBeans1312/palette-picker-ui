@@ -4,7 +4,7 @@ import ColorContainer from '../ColorContainer/ColorContainer';
 import AddNewProjectForm from '../AddNewProjectForm/AddNewProjectForm';
 import CreatePaletteForm from '../CreatePaletteForm/CreatePaletteForm';
 import { connect } from 'react-redux';
-import { getAllProjects, getAllPalettes, patchProject } from '../../util/apiCalls';
+import { getAllProjects, getAllPalettes, patchProject, patchPalette } from '../../util/apiCalls';
 import { addAllProjects, saveColor, addAllPalettes, addProject, updateProjectName } from '../../actions';
 import editIcon from '../../assets/editIcon.svg'
 import './App.css';
@@ -53,15 +53,40 @@ class App extends Component {
     this.props.saveColor(updatedColors)
   }
 
-  // savePalette = (colors) => {
 
-  // }
+  findSpecificPalette = () => {
+    const { allPalettes, colors } = this.props
+    const specificPalette = allPalettes.filter(palette => {
+      const color = colors.map(color => {
+        return color.id
+      })
+      return palette.id === color[0]
+    });
+    this.updatePalette(specificPalette)    
+  } 
+
+
+  updatePalette = async (specificPalette) => {
+    const { colors } = this.props;
+    const palette = {
+      id: specificPalette[0].id,
+      palette_name: specificPalette[0].palette_name,
+      project_id: specificPalette[0].project_id,
+      color_one: colors[0].color,
+      color_two:colors[1].color,
+      color_three:colors[2].color,
+      color_four: colors[3].color,
+      color_five: colors[4].color
+    }
+    patchPalette(palette)
+    const allProjects = await getAllProjects()
+    const allPalettes = await getAllPalettes()
+    this.props.addAllProjects(allProjects)
+    this.props.addAllPalettes(allPalettes)
+
+  }
 
   updateProjectName = async (name, id) => {
-    // const { name } = this.state.editedProjectName
-    // const { id } = this.props.project.id
-    console.log(name, id)
-
     try {
       patchProject(name,id)
       this.props.updateProjectName(false)
@@ -91,7 +116,7 @@ class App extends Component {
           }
         </div>
         }
-      <ColorContainer generateNewColors={this.generateNewColors} colors={this.props.colors} />
+      <ColorContainer generateNewColors={this.generateNewColors} colors={this.props.colors} updatePalette={this.findSpecificPalette} />
       <ProjectContainer/>
       <div className='form-container'>
         <AddNewProjectForm />
@@ -106,7 +131,8 @@ const mapStateToProps = state => ({
   project: state.project,
   allProjects: state.allProjects,
   colors: state.colors,
-  editingProjectName: state.editingProjectName
+  editingProjectName: state.editingProjectName,
+  allPalettes: state.allPalettes
 });
 
 const mapDispatchToProps = dispatch => ({
