@@ -4,11 +4,7 @@ import ColorContainer from '../ColorContainer/ColorContainer';
 import AddNewProjectForm from '../AddNewProjectForm/AddNewProjectForm';
 import CreatePaletteForm from '../CreatePaletteForm/CreatePaletteForm';
 import { connect } from 'react-redux';
-<<<<<<< HEAD
 import { getAllProjects, getAllPalettes, patchProject, patchPalette } from '../../util/apiCalls';
-=======
-import { getAllProjects, getAllPalettes, patchProject } from '../../util/apiCalls';
->>>>>>> c26fc46830a69dcb3c56a709af5a92a120413cbd
 import { addAllProjects, saveColor, addAllPalettes, addProject, updateProjectName } from '../../actions';
 import editIcon from '../../assets/editIcon.svg'
 import './App.css';
