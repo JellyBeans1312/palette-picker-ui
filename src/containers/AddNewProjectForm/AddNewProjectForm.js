@@ -14,6 +14,7 @@ export class AddNewProjectForm extends Component {
   }
 
   handleChange = e => {
+    this.setState({error: 'error'})
     this.setState({[e.target.name]: e.target.value})
   }
 
