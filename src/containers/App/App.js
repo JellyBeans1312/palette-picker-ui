@@ -108,7 +108,7 @@ class App extends Component {
         <div className='update-project-name'>
             <p>{project.project_name}</p> 
             <img src={editIcon} style={{ height: 30, width: 30}} onClick={() => this.props.updateProjectName(true)} />
-            <img src={xImage} style={{ height: 30, width: 30 }} onClick={() => this.props.removeCurrentProject('')} />
+            <img src={xImage} style={{ height: 30, width: 30 }} onClick={() => this.props.removeCurrentProject()} />
           { this.props.editingProjectName &&
           <div>
             <input type='text' placeholder={project.project_name} value={this.state.editedProjectName} onChange={this.handleChange}/>
