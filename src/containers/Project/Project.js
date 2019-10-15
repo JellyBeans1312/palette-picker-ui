@@ -9,18 +9,20 @@ import { deletePalette, deleteProject } from '../../util/apiCalls'
 const Project = ({props, palettes, addPalette, removePalette, removeProject, addProject}) => {
   const displayPalettes = palettes.map(palette => {
     const { updated_at, created_at, palette_name, project_id, ...newPalette } = palette
-    let keys = Object.keys(newPalette);
+    const { id, ...displayPalette } = newPalette
+    let keys = Object.keys(displayPalette);
     return  (
-      <div className='small-palettes'>
+      <div className='small-palettes-container'>
         <ul className='small-palettes-ul'>
-          <li className='small-palettes'>{palette.palette_name}
-            { keys.map(key => {
-              return <div style={{ backgroundColor: newPalette[key], height: 20, width: 20 }}></div>
+          <li className='small-palettes'>
+            <div>{palette.palette_name}</div>
+            { keys.map(key => {          
+              return <div className='palette-colors' style={{ backgroundColor: newPalette[key]}}></div>
             })}
           </li>
         </ul>
-        <img src={trashcan} style={{ height: 30, width: 30}} onClick={() => {deletePalette(palette.id); removePalette(palette.id)}}></img>
-        <img src={editIcon}  style={{ height: 30, width: 30}} onClick={() => addPalette(newPalette)}/>
+        <img src={trashcan} alt='trashcan' className='palette-buttons' onClick={() => {deletePalette(palette.id); removePalette(palette.id)}}></img>
+        <img src={editIcon} alt='edit' className='palette-buttons' onClick={() => addPalette(newPalette)}/>
 
       </div>
     )
@@ -35,7 +37,7 @@ const Project = ({props, palettes, addPalette, removePalette, removeProject, add
           {project_name}
           <button onClick={() => addProject(project_name, id)}>Select this project</button>
         </div>
-      <img src={trashcan} style={{ height: 30, width: 30}} onClick={() => {deleteProject(id); removeProject(id)}}></img>
+      <img src={trashcan} className='project-button' style={{ height: 30, width: 30}} onClick={() => {deleteProject(id); removeProject(id)}}></img>
       </div>
       {displayPalettes}
     </div>
