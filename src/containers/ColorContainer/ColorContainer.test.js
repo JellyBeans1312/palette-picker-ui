@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ColorContainer from './ColorContainer';
+import { ColorContainer }  from './ColorContainer';
 
 describe('ColorContainer', () => {
   it('should match the snapshot with all data passed in correctly', () => {

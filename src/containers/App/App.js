@@ -64,7 +64,6 @@ class App extends Component {
     this.updatePalette(specificPalette)    
   } 
 
-
   updatePalette = async (specificPalette) => {
     const { colors } = this.props;
     const palette = {

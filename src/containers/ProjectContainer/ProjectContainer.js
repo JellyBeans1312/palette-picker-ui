@@ -10,7 +10,7 @@ const ProjectContainer = ({ allProjects, allPalettes }) =>
     let correspondingPalettes = allPalettes.filter(palette => {
       return palette.project_id === project.id
     }) 
-    return <Project props={{...project}} palettes={correspondingPalettes} />
+    return <Project key={project.id} props={{...project}} palettes={correspondingPalettes} />
   })
   return (
     <section className='project-container'>
