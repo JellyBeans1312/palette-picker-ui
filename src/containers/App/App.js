@@ -4,8 +4,9 @@ import AddNewProjectForm from '../AddNewProjectForm/AddNewProjectForm';
 import CreatePaletteForm from '../CreatePaletteForm/CreatePaletteForm';
 import { connect } from 'react-redux';
 import { getAllProjects, getAllPalettes, patchProject, patchPalette } from '../../util/apiCalls';
-import { addAllProjects, saveColor, addAllPalettes, addProject, updateProjectName } from '../../actions';
-import editIcon from '../../assets/editIcon.svg'
+import { addAllProjects, saveColor, addAllPalettes, addProject, updateProjectName, removeCurrentProject } from '../../actions';
+import editIcon from '../../assets/editIcon.svg';
+import xImage from '../../assets/xImage.svg';
 import './App.css';
 import ProjectContainer from '../ProjectContainer/ProjectContainer';
 
@@ -81,10 +82,9 @@ class App extends Component {
     const allPalettes = await getAllPalettes()
     this.props.addAllProjects(allProjects)
     this.props.addAllPalettes(allPalettes)
-
   }
 
-  updateProjectName = async (name, id) => {
+  renameProject = async (name, id) => {
     try {
       patchProject(name,id)
       this.props.updateProjectName(false)
@@ -97,6 +97,7 @@ class App extends Component {
   handleChange = e => {
     this.setState({editedProjectName: e.target.value})
   }
+
   render() {
     const { allProjects, project } = this.props;
     return (
@@ -107,10 +108,11 @@ class App extends Component {
         <div className='update-project-name'>
             <p>{project.project_name}</p> 
             <img src={editIcon} style={{ height: 30, width: 30}} onClick={() => this.props.updateProjectName(true)} />
+            <img src={xImage} style={{ height: 30, width: 30 }} onClick={() => this.props.removeCurrentProject('')} />
           { this.props.editingProjectName &&
           <div>
             <input type='text' placeholder={project.project_name} value={this.state.editedProjectName} onChange={this.handleChange}/>
-            <button onClick={() => {this.props.addProject(this.state.editedProjectName, project.id); this.updateProjectName(this.state.editedProjectName, project.id)}}>Update Project Name</button> 
+            <button onClick={() => {this.props.addProject(this.state.editedProjectName, project.id); this.renameProject(this.state.editedProjectName, project.id)}}>Update Project Name</button> 
           </div>
           }
         </div>
@@ -140,7 +142,8 @@ const mapDispatchToProps = dispatch => ({
   saveColor: color => dispatch(saveColor(color)),
   addAllPalettes: allPalettes => dispatch(addAllPalettes(allPalettes)),
   addProject: (project, id) => dispatch(addProject(project, id)),
-  updateProjectName: status => dispatch(updateProjectName(status))
+  updateProjectName: status => dispatch(updateProjectName(status)),
+  removeCurrentProject: () => dispatch(removeCurrentProject())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
