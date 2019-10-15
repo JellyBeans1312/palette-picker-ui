@@ -58,7 +58,7 @@ export class CreatePaletteForm extends Component {
   render() {
     return (
       <form className='palette-form'>
-        <input
+        <input className='form-input'
           type = 'text'
           value = {this.state.paletteName}
           onChange = {this.handleChange}
@@ -67,20 +67,20 @@ export class CreatePaletteForm extends Component {
         >
         </input>
         {this.props.project && this.state.paletteName &&
-        <button
+        <button className='palette-button'
           onClick={(e) => this.savePalette(e)}
         >
         Save palette to current project.
         </button>
         }
-        <input 
+        <input className='form-input'
           type='text'
           value={this.state.searchPaletteName}
           onChange={this.handleChange}
           placeholder='Search a for a palette'
           name='searchPaletteName'
         />
-        <button onClick={this.searchPalette}>Search!</button>
+        <button className='palette-button' onClick={this.searchPalette}>Search!</button>
       </form>
     )
   }
