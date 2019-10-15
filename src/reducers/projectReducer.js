@@ -2,6 +2,8 @@ export const projectReducer = (state = '', action) => {
   switch(action.type) {
     case 'ADD_PROJECT':
       return {id: action.id, project_name: action.project_name};
+    case 'REMOVE_CURRENT_PROJECT':
+      return '';
     default:
       return state;
   }

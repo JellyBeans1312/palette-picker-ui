@@ -42,4 +42,8 @@ export const removeProject = id => ({
 export const updateProjectName = status => ({
   type: 'UPDATE_PROJECT_NAME',
   status
-})
+});
+
+export const removeCurrentProject = () => ({
+  type: 'REMOVE_CURRENT_PROJECT',
+});
