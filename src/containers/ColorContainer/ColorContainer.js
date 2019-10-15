@@ -1,10 +1,11 @@
 import React from 'react';
 import ColorRhombus from '../../components/ColorRhombus/ColorRhombus';
+import PropTypes from 'prop-types';
 import './ColorContainer.css';
 
-const ColorContainer = ({ generateNewColors, colors, updatePalette }) => {
+export const ColorContainer = ({ generateNewColors, colors, updatePalette }) => {
   const colorRhombi = colors.map(color => {
-    return <ColorRhombus color={color.color}/>
+    return <ColorRhombus key={color.color} color={color.color}/>
   });
 
   return (
@@ -25,3 +26,9 @@ const ColorContainer = ({ generateNewColors, colors, updatePalette }) => {
 }
 
 export default ColorContainer;
+
+ColorContainer.propTypes = {
+  generateNewColors: PropTypes.func,
+  colors: PropTypes.array,
+  updatePalette: PropTypes.func
+}
