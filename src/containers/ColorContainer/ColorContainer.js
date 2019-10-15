@@ -1,6 +1,5 @@
 import React from 'react';
 import ColorRhombus from '../../components/ColorRhombus/ColorRhombus';
-import { connect } from 'react-redux';
 import './ColorContainer.css';
 
 const ColorContainer = ({ generateNewColors, colors, updatePalette }) => {
@@ -19,14 +18,10 @@ const ColorContainer = ({ generateNewColors, colors, updatePalette }) => {
         >
         Generate a new palette!
         </button>
-        <button onClick={updatePalette}>Update Palette</button>
+        <button className='update-palette-button' onClick={updatePalette}>Update Palette</button>
       </div>
     </section>
   )
 }
 
-export const mapStateToProps = state => ({
-  project: state.project
-});
-
-export default connect(mapStateToProps)(ColorContainer);
+export default ColorContainer;

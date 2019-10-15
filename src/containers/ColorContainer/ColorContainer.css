@@ -1,6 +1,7 @@
 .color-container {
   border: 1px solid black;
   display: flex;
+  height: 250px;
   padding: 20px;
   position: relative;
   width: 100%;
@@ -9,7 +10,7 @@
 .color-container-div {
   display: flex;
   flex-wrap: wrap;
-  height: 300px;
+  /* height: 300px; */
   justify-content: center;
   width: 100%;
 }
@@ -26,4 +27,9 @@
 .generate-color-button {
   align-self: flex-end;
   height: 30px;
+  border-radius: 8px;
+}
+
+.update-palette-button {
+  border-radius: 8px;
 }
