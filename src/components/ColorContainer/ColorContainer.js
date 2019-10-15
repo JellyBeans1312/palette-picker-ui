@@ -1,5 +1,5 @@
 import React from 'react';
-import ColorRhombus from '../../components/ColorRhombus/ColorRhombus';
+import ColorRhombus from '../ColorRhombus/ColorRhombus';
 import PropTypes from 'prop-types';
 import './ColorContainer.css';
 
