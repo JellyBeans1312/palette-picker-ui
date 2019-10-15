@@ -1,5 +1,22 @@
 .palette-form {
-  background-color: red;
+  border: 1px solid black;
   height: 50%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.form-input {
+  text-align: center;
+  margin: 10px;
+  height: 20px;
+  width: 30%;
+}
+
+.palette-button {
+  height: 20px;
+  width: 30%;
 }
