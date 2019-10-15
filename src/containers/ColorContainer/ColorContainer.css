@@ -1,6 +1,7 @@
 .color-container {
   background-color: green;
   display: flex;
+  position: relative;
   width: 100%;
 }
 
@@ -12,11 +13,14 @@
 }
 
 .button-container {
-  flex-direction: column;
+  /* flex-direction: column; */
+  position: absolute;
+  right: 34%;
+  top: 80%;
+  width: 360px;
 }
 
 .generate-color-button {
-  height: 30px;
-  width: 60px;
   align-self: flex-end;
+  height: 30px;
 }
