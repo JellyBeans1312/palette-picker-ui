@@ -14,7 +14,6 @@ export class AddNewProjectForm extends Component {
   }
 
   handleChange = e => {
-    this.setState({error: 'error'})
     this.setState({[e.target.name]: e.target.value})
   }
 
@@ -38,15 +37,22 @@ export class AddNewProjectForm extends Component {
   render() {
     return (
       <form className='new-project-form'> 
-        {this.state.error && <p>{this.state.error}</p>}
-        <input 
-          type='text'
-          name='projectName'
-          placeholder='Enter a new project name!'
-          onChange={this.handleChange}
-          value={this.state.projectName}
-        />
-        <button onClick={this.handleSubmit}>Create Project</button>
+        <div className='align-form-items'>
+          <input 
+            type='text'
+            name='projectName'
+            placeholder='Enter a new project name!'
+            onChange={this.handleChange}
+            value={this.state.projectName}
+            className='project-name'
+            />
+          <button 
+          onClick={this.handleSubmit}
+          className='create-project-button'
+          >Create Project
+          </button>
+          {this.state.error && <p>{this.state.error}</p>}
+        </div>
       </form>
     )
   }

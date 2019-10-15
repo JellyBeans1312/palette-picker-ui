@@ -18,7 +18,7 @@ const ColorContainer = ({ generateNewColors, colors, updatePalette }) => {
         >
         Generate a new palette!
         </button>
-        <button onClick={updatePalette}>Update Palette</button>
+        <button className='update-palette-button' onClick={updatePalette}>Update Palette</button>
       </div>
     </section>
   )
