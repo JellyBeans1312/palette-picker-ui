@@ -1,13 +1,35 @@
 .project-header {
+  font-size: 30px;
   display: flex;
+  margin-top: 20px;
+}
+
+.small-palettes-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .small-palettes {
-  display:flex;
+  font-size: 20px;
 }
 
 .small-palettes-ul {
-  display: flex;
   list-style-type: none;
   padding: 0;
+}
+
+.palette-colors {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+}
+
+.palette-buttons {
+  height: 35px;
+  padding-top: 40px;
+  width: 30px;
+}
+.project-button {
+  height: 35px;
+  padding-top: 10px;
 }
