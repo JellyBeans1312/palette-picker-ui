@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CreateProjectForm from '../CreateProjectForm/CreateProjectForm';
 import ColorContainer from '../ColorContainer/ColorContainer';
 import AddNewProjectForm from '../AddNewProjectForm/AddNewProjectForm';
 import CreatePaletteForm from '../CreatePaletteForm/CreatePaletteForm';
@@ -103,9 +102,10 @@ class App extends Component {
     const { allProjects, project } = this.props;
     return (
       <main className='main'>
-      {!allProjects && <CreateProjectForm />}
+      <header className='header'>
+        <h1>Welcome to Palette Picker</h1>
       {project &&  
-        <div>
+        <div className='update-project-name'>
             <p>{project.project_name}</p> 
             <img src={editIcon} style={{ height: 30, width: 30}} onClick={() => this.props.updateProjectName(true)} />
           { this.props.editingProjectName &&
@@ -116,6 +116,7 @@ class App extends Component {
           }
         </div>
         }
+      </header>
       <ColorContainer generateNewColors={this.generateNewColors} colors={this.props.colors} updatePalette={this.findSpecificPalette} />
       <ProjectContainer/>
       <div className='form-container'>
