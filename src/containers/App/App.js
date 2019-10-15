@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ColorContainer from '../ColorContainer/ColorContainer';
+import ColorContainer from '../../components/ColorContainer/ColorContainer';
 import AddNewProjectForm from '../AddNewProjectForm/AddNewProjectForm';
 import CreatePaletteForm from '../CreatePaletteForm/CreatePaletteForm';
 import { connect } from 'react-redux';
@@ -9,6 +9,7 @@ import editIcon from '../../assets/editIcon.svg';
 import xImage from '../../assets/xImage.svg';
 import './App.css';
 import ProjectContainer from '../ProjectContainer/ProjectContainer';
+import PropTypes from 'prop-types';
 
 class App extends Component {
   constructor() {
@@ -147,3 +148,17 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+App.propTypes = {
+  project: PropTypes.string,
+  allProjects: PropTypes.array,
+  colors: PropTypes.array,
+  editingProjectName: PropTypes.bool,
+  allPalettes: PropTypes.array,
+  addAllProjects: PropTypes.func,
+  saveColor: PropTypes.func,
+  addAllPalettes: PropTypes.func,
+  addProject: PropTypes.func,
+  updateProjectName: PropTypes.func,
+  removeCurrentProject: PropTypes.func
+}
