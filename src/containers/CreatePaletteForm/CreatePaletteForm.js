@@ -3,6 +3,7 @@ import { createPalette, getAllProjects, getAllPalettes, searchSpecificPalette } 
 import { addAllProjects, addAllPalettes, addPalette, addProject } from '../../actions/index';
 import { connect } from 'react-redux';
 import './CreatePaletteForm.css';
+import PropTypes from 'prop-types';
 
 export class CreatePaletteForm extends Component {
   constructor() {
@@ -100,3 +101,13 @@ export const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePaletteForm);
+
+CreatePaletteForm.propTypes = {
+  addAllProjects: PropTypes.func,
+  addAllPalettes: PropTypes.func,
+  addPalette: PropTypes.func,
+  addProject: PropTypes.func,
+  colors: PropTypes.array,
+  project: PropTypes.string,
+  allProjects: PropTypes.array
+}

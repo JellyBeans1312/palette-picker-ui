@@ -2,6 +2,7 @@ import React from 'react';
 import { lockColor } from '../../actions';
 import { connect } from 'react-redux';
 import './ColorRhombus.css';
+import PropTypes from 'prop-types';
 
 export const ColorRhombus = (props) => {
   const color = props.color
@@ -17,3 +18,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(null, mapDispatchToProps)(ColorRhombus);
+
+ColorRhombus.propTypes = {
+  color: PropTypes.string,
+  lockColor: PropTypes.func
+}

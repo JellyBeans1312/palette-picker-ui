@@ -3,6 +3,8 @@ import './AddNewProjectForm.css'
 import { createProject, getAllProjects } from '../../util/apiCalls';
 import { addProject, addAllProjects } from '../../actions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 
 export class AddNewProjectForm extends Component {
   constructor() {
@@ -64,3 +66,8 @@ export const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(null, mapDispatchToProps)(AddNewProjectForm);
+
+AddNewProjectForm.propTypes = {
+  addProject: PropTypes.func,
+  addAllProjects: PropTypes.func
+}
