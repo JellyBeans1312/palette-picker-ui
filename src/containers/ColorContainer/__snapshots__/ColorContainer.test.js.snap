@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorContainer should match the snapshot with all data passed in correctly 1`] = `
+<section
+  className="color-container"
+>
+  <div
+    className="color-container-div"
+  >
+    <Connect(ColorRhombus)
+      color="#493c4d"
+      key="#493c4d"
+    />
+    <Connect(ColorRhombus)
+      color="#567c4d"
+      key="#567c4d"
+    />
+    <Connect(ColorRhombus)
+      color="#493c4f"
+      key="#493c4f"
+    />
+    <Connect(ColorRhombus)
+      color="#493c67"
+      key="#493c67"
+    />
+    <Connect(ColorRhombus)
+      color="#FFFFFF"
+      key="#FFFFFF"
+    />
+  </div>
+  <div
+    className="button-container"
+  >
+    <button
+      className="generate-color-button"
+      onClick={[MockFunction]}
+    >
+      Generate a new palette!
+    </button>
+    <button
+      className="update-palette-button"
+      onClick={[MockFunction]}
+    >
+      Update Palette
+    </button>
+  </div>
+</section>
+`;
