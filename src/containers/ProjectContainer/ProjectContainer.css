@@ -1,4 +1,6 @@
 .project-container {
-  background-color: yellow;
-  width: 50%;
+  height: 300px;
+  overflow: scroll;
+  padding: 20px;
+  width: 47.2%;
 }

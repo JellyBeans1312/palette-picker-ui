@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CreateProjectForm from '../CreateProjectForm/CreateProjectForm';
 import ColorContainer from '../ColorContainer/ColorContainer';
 import AddNewProjectForm from '../AddNewProjectForm/AddNewProjectForm';
 import CreatePaletteForm from '../CreatePaletteForm/CreatePaletteForm';
@@ -103,7 +102,6 @@ class App extends Component {
     const { allProjects, project } = this.props;
     return (
       <main className='main'>
-      {!allProjects && <CreateProjectForm />}
       <header className='header'>
         <h1>Welcome to Palette Picker</h1>
       {project &&  
