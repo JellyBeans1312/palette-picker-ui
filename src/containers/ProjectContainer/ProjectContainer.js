@@ -4,7 +4,7 @@ import Project from '../Project/Project';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const ProjectContainer = ({ allProjects, allPalettes }) =>
+export const ProjectContainer = ({ allProjects, allPalettes }) =>
  {
   const projectList = allProjects.map(project => {
     let correspondingPalettes = allPalettes.filter(palette => {
