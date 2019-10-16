@@ -1,4 +1,4 @@
-import { createProject, getAllProjects, getAllPalettes, createPalette, deletePalette } from './apiCalls';
+import { createProject, getAllProjects, getAllPalettes, createPalette, deletePalette, deleteProject, patchProject } from './apiCalls';
 
 describe('createProject', () => {
   let mockResponse, mockRequest, mockNewProject;
@@ -260,18 +260,18 @@ describe('deletePalette', () => {
     });
   });
 
-  it('should call fetch with the correct URL', () => {
+  it('should call fetch with the correct URL (HAPPY) :)', () => {
     deletePalette(mockId);
 
     expect(window.fetch).toHaveBeenCalledWith('https://palette-picker-be-eo-am.herokuapp.com/api/v1/palettes/1', mockRequest)
   });
 
-  it('should return a 204 status if the deletion is successful', () => {
+  it('should return a 204 status if the deletion is successful (SAD) :(', () => {
     deletePalette(mockId)
     .then(response => expect(response.status).toEqual(204))
   });
 
-  it('should throw an error if the Promise.ok is false', () => {
+  it('should throw an error if the Promise.ok is false (SAD) :(', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         ok: false
@@ -281,7 +281,7 @@ describe('deletePalette', () => {
     expect(deletePalette(mockId)).rejects.toEqual(Error('There was an error deleting your palette. Please try again.'))
   });
 
-  it('should throw an error if the Promise rejects', () => {
+  it('should throw an error if the Promise rejects (SAD) :(', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.reject({
         message: 'Error deleting your palette'
@@ -290,4 +290,121 @@ describe('deletePalette', () => {
 
     expect(deletePalette(mockId)).rejects.toEqual({ message: 'Error deleting your palette' })
   });
+});
+
+describe('deleteProject', () => {
+  let mockId, mockResponse, mockRequest;
+
+  beforeEach(() => {
+    mockResponse = {
+      id: 1
+    }
+    mockRequest = {
+      method: 'DELETE'
+    }
+    mockId = 1
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockResponse)
+      })
+    });
+  });
+
+  it('should call fetch with the correct URL (HAPPY) :)', () => {
+    deleteProject(mockId);
+
+    expect(window.fetch).toHaveBeenCalledWith('https://palette-picker-be-eo-am.herokuapp.com/api/v1/projects/1', mockRequest)
+  });
+
+  it('should return a 204 status if the deletion is successful (HAPPY) :)', () => {
+    deleteProject(mockId)
+      .then(response => expect(response.status).toEqual(204))
+  });
+
+  it('should throw an error if the Promise.ok is false (SAD) :(', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      });
+    });
+
+    expect(deleteProject(mockId)).rejects.toEqual(Error('There was an error deleting your project. Please try again.'))
+  });
+
+  it('should throw an error if the Promise rejects (SAD) :(', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject({
+        message: 'Error deleting your project'
+      })
+    });
+
+    expect(deletePalette(mockId)).rejects.toEqual({ message: 'Error deleting your project' })
+  });
+});
+
+describe('patchProject', () => {
+  let mockResponse, mockProjectName, mockId, mockRequest;
+
+  beforeEach(() => {
+    mockProjectName = 'Test';
+    mockId = 1;
+    mockResponse = {
+      id: 1
+    }
+    mockRequest = {
+      method: 'PATCH',
+      body: JSON.stringify(mockProjectName),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockResponse)
+      });
+    });
+  });
+
+  it('should call fetch with the correct url (HAPPY) :)', () => {
+    patchProject(mockProjectName, mockId);
+
+    expect(window.fetch).toHaveBeenCalledWith('https://palette-picker-be-eo-am.herokuapp.com/api/v1/projects/1', mockRequest)
+  });
+
+  it('should return the id of the patched project if the request is successful (HAPPY) :)', () => {
+    patchProject(mockProjectName, mockId)
+    .then(results => expect(results).toEqual(mockResponse))
+  });
+
+  it('should throw and error if the Promise.ok is false', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      })
+    });
+
+    expect(patchProject(mockProjectName, mockId)).rejects.toEqual(Error('There was an error editing your project. Please try again.'))
+  });
+
+  it('should throw an error if the Promise rejects', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject({
+        message: 'Error updating your project.'
+      });
+    });
+
+    expect(patchProject(mockProjectName, mockId)).rejects.toEqual({ message: 'Error updating your project.' });
+  });
+});
+
+describe('patchPalette', () => {
+  let mockResponse, mockNewPalette, mockRequest;
+
+  beforeEach(() => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      
+    })
+  })
 });
