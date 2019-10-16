@@ -1,4 +1,4 @@
-import { createProject, getAllProjects, getAllPalettes, createPalette, deletePalette, deleteProject, patchProject } from './apiCalls';
+import { createProject, getAllProjects, getAllPalettes, createPalette, deletePalette, deleteProject, patchProject, patchPalette } from './apiCalls';
 
 describe('createProject', () => {
   let mockResponse, mockRequest, mockNewProject;
@@ -378,7 +378,7 @@ describe('patchProject', () => {
     .then(results => expect(results).toEqual(mockResponse))
   });
 
-  it('should throw and error if the Promise.ok is false', () => {
+  it('should throw and error if the Promise.ok is false (SAD) :(', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         ok: false
@@ -388,7 +388,7 @@ describe('patchProject', () => {
     expect(patchProject(mockProjectName, mockId)).rejects.toEqual(Error('There was an error editing your project. Please try again.'))
   });
 
-  it('should throw an error if the Promise rejects', () => {
+  it('should throw an error if the Promise rejects (SAD) :(', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.reject({
         message: 'Error updating your project.'
@@ -403,8 +403,63 @@ describe('patchPalette', () => {
   let mockResponse, mockNewPalette, mockRequest;
 
   beforeEach(() => {
+    mockNewPalette = {
+      id: 22,
+      palette_name: "test",
+      project_id: 50,
+      color_one: "#67cd51",
+      color_two: "#15fe0d",
+      color_three: "#507dbb",
+      color_four: "#784994",
+      color_five: "#2570dd"
+    }
+    mockResponse = {
+      id: 22
+    }
+    mockRequest = {
+      method: 'PATCH',
+      body: JSON.stringify(mockNewPalette),
+      headers: {
+        "Content-Type": "application/json",
+      } 
+    }
     window.fetch = jest.fn().mockImplementation(() => {
-      
-    })
-  })
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockResponse)
+      });
+    });
+  });
+
+  it('should call fetch with the correct url (HAPPY) :)', () => {
+    patchPalette(mockNewPalette);
+
+    expect(window.fetch).toHaveBeenCalledWith('https://palette-picker-be-eo-am.herokuapp.com/api/v1/palettes/22', mockRequest);
+  });
+
+  it('should return the id of the updated palette if the request is successful (HAPPY) :)', () => {
+    patchPalette(mockNewPalette)
+    .then(results => expect(results).toEqual(mockResponse))
+  });
+
+  it('should throw an error if the response.ok is false', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      });
+    });
+
+    expect(patchPalette(mockNewPalette)).rejects.toEqual(Error('There was an error editing your palette. Please try again.'))
+  });
+
+  it('should throw an error if the Promise rejects', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject({
+        message: 'Error updating your palette.'
+      });
+    });
+
+    expect(patchPalette(mockNewPalette)).rejects.toEqual({ message: 'Error updating your palette.'});
+  });
 });
+
