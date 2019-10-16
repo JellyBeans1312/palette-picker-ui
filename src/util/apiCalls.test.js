@@ -1,4 +1,4 @@
-import { createProject, getAllProjects } from './apiCalls';
+import { createProject, getAllProjects, getAllPalettes } from './apiCalls';
 
 describe('createProject', () => {
   let mockResponse, mockRequest, mockNewProject;
@@ -103,4 +103,78 @@ describe('getAllProjects', () => {
 
     expect(getAllProjects()).rejects.toEqual({ message: 'There was an error retrieving your projects. Please try again.' })
   });
+});
+
+describe('getAllPalettes', () => {
+  let mockResponse;
+
+  beforeEach(() => {
+    mockResponse = [
+      {
+        id: 21,
+        palette_name: "asdf",
+        project_id: 50,
+        color_one: "#67cd51",
+        color_two: "#15fe0d",
+        color_three: "#507dbb",
+        color_four: "#784994",
+        color_five: "#2570dd",
+        created_at: "2019-10-15T01:54:46.520Z",
+        updated_at: "2019-10-15T01:54:46.520Z"
+      },
+      {
+        id: 22,
+        palette_name: "test",
+        project_id: 50,
+        color_one: "#67cd51",
+        color_two: "#15fe0d",
+        color_three: "#507dbb",
+        color_four: "#784994",
+        color_five: "#2570dd",
+        created_at: "2019-10-15T01:54:46.520Z",
+        updated_at: "2019-10-15T01:54:46.520Z"
+      }
+    ];
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        json: Promiser.resolve(mockResponse)
+      });
+    });
+  });
+
+  it('should call fetch with the correct url', () => {
+    getAllPalettes();
+
+    expect(window.fetch).toHaveBeenCalledWith('https://palette-picker-be-eo-am.herokuapp.com/api/v1/palettes')
+  });
+
+  it('should return an array of palettes', () => {
+    getAllPalettes()
+    .then(results => expect(results).toEqual(mockResponse));
+  });
+
+  it('should throw an error if the response.ok is false', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      });
+    });
+
+    expect(getAllPalettes()).rejects.toEqual(Error('There was an error retrieving your palettes. Please try again.'))
+  });
+
+  it('should throw an error if the Promise rejects', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject({
+        message: 'Error retrieving your palettes.'
+      })
+    });
+
+    expect(getAllPalettes()).rejects.toEqual({ message: 'Error retrieving your palettes.'})
+  });
+});
+
+describe('createPalette', () => {
+
 });
