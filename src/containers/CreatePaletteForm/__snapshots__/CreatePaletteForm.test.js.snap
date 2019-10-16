@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create Palette Form should match snapshot 1`] = `
+<form
+  className="palette-form"
+>
+  <input
+    className="form-input"
+    name="paletteName"
+    onChange={[Function]}
+    placeholder="Enter a palette name!"
+    type="text"
+    value=""
+  />
+  <input
+    className="form-input"
+    name="searchPaletteName"
+    onChange={[Function]}
+    placeholder="Search a for a palette"
+    type="text"
+    value=""
+  />
+  <button
+    className="palette-button"
+    onClick={[Function]}
+  >
+    Search!
+  </button>
+</form>
+`;
