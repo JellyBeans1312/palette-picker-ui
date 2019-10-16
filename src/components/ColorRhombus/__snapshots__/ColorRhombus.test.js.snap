@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Color Rhombus should match snapshot 1`] = `
+<div
+  className="color-rhombus"
+  style={
+    Object {
+      "backgroundColor": undefined,
+    }
+  }
+>
+  <button
+    onClick={[Function]}
+  >
+    Lock
+  </button>
+</div>
+`;

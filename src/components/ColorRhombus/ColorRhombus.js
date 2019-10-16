@@ -13,7 +13,7 @@ export const ColorRhombus = (props) => {
   )
 }
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   lockColor: color => dispatch(lockColor(color))
 });
 
