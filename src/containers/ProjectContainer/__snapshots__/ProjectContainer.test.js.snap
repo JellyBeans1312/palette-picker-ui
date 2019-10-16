@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectContainer should match the snapshot with all data passed in correctly 1`] = `
+<section
+  className="project-container"
+>
+  <Connect(Project)
+    key="51"
+    palettes={Array []}
+    props={
+      Object {
+        "id": 51,
+        "project_name": "Aidan's fantastic project",
+      }
+    }
+  />
+  <Connect(Project)
+    key="52"
+    palettes={Array []}
+    props={
+      Object {
+        "id": 52,
+        "project_name": "Eric's great project",
+      }
+    }
+  />
+</section>
+`;
