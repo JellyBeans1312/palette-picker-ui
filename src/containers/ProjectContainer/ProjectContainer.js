@@ -19,7 +19,7 @@ export const ProjectContainer = ({ allProjects, allPalettes }) =>
   )
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   allProjects: state.allProjects,
   allPalettes: state.allPalettes
 });
