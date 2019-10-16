@@ -1,0 +1,231 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Project should match snapshot 1`] = `
+<div>
+  <div
+    className="project-header"
+  >
+    <div>
+      pants
+      <button
+        onClick={[Function]}
+      >
+        Select this project
+      </button>
+    </div>
+    <img
+      alt="trashcan"
+      className="project-button"
+      onClick={[Function]}
+      src="trashcan.svg"
+      style={
+        Object {
+          "height": 30,
+          "width": 30,
+        }
+      }
+    />
+  </div>
+  <div
+    className="small-palettes-container"
+  >
+    <ul
+      className="small-palettes-ul"
+    >
+      <li
+        className="small-palettes"
+      >
+        <div>
+          asdf
+        </div>
+        <div
+          className="palette-colors"
+          style={
+            Object {
+              "backgroundColor": "#67cd51",
+            }
+          }
+        />
+        <div
+          className="palette-colors"
+          style={
+            Object {
+              "backgroundColor": "#15fe0d",
+            }
+          }
+        />
+        <div
+          className="palette-colors"
+          style={
+            Object {
+              "backgroundColor": "#507dbb",
+            }
+          }
+        />
+        <div
+          className="palette-colors"
+          style={
+            Object {
+              "backgroundColor": "#784994",
+            }
+          }
+        />
+        <div
+          className="palette-colors"
+          style={
+            Object {
+              "backgroundColor": "#2570dd",
+            }
+          }
+        />
+      </li>
+    </ul>
+    <img
+      alt="trashcan"
+      className="palette-buttons"
+      onClick={[Function]}
+      src="trashcan.svg"
+    />
+    <img
+      alt="edit"
+      className="palette-buttons"
+      onClick={[Function]}
+      src="editIcon.svg"
+    />
+  </div>
+  <div
+    className="small-palettes-container"
+  >
+    <ul
+      className="small-palettes-ul"
+    >
+      <li
+        className="small-palettes"
+      >
+        <div>
+          fdsa
+        </div>
+        <div
+          className="palette-colors"
+          style={
+            Object {
+              "backgroundColor": "#67cd51",
+            }
+          }
+        />
+        <div
+          className="palette-colors"
+          style={
+            Object {
+              "backgroundColor": "#15fe0d",
+            }
+          }
+        />
+        <div
+          className="palette-colors"
+          style={
+            Object {
+              "backgroundColor": "#507dbb",
+            }
+          }
+        />
+        <div
+          className="palette-colors"
+          style={
+            Object {
+              "backgroundColor": "#784994",
+            }
+          }
+        />
+        <div
+          className="palette-colors"
+          style={
+            Object {
+              "backgroundColor": "#2570dd",
+            }
+          }
+        />
+      </li>
+    </ul>
+    <img
+      alt="trashcan"
+      className="palette-buttons"
+      onClick={[Function]}
+      src="trashcan.svg"
+    />
+    <img
+      alt="edit"
+      className="palette-buttons"
+      onClick={[Function]}
+      src="editIcon.svg"
+    />
+  </div>
+  <div
+    className="small-palettes-container"
+  >
+    <ul
+      className="small-palettes-ul"
+    >
+      <li
+        className="small-palettes"
+      >
+        <div>
+          afsd
+        </div>
+        <div
+          className="palette-colors"
+          style={
+            Object {
+              "backgroundColor": "#67cd51",
+            }
+          }
+        />
+        <div
+          className="palette-colors"
+          style={
+            Object {
+              "backgroundColor": "#15fe0d",
+            }
+          }
+        />
+        <div
+          className="palette-colors"
+          style={
+            Object {
+              "backgroundColor": "#507dbb",
+            }
+          }
+        />
+        <div
+          className="palette-colors"
+          style={
+            Object {
+              "backgroundColor": "#784994",
+            }
+          }
+        />
+        <div
+          className="palette-colors"
+          style={
+            Object {
+              "backgroundColor": "#2570dd",
+            }
+          }
+        />
+      </li>
+    </ul>
+    <img
+      alt="trashcan"
+      className="palette-buttons"
+      onClick={[Function]}
+      src="trashcan.svg"
+    />
+    <img
+      alt="edit"
+      className="palette-buttons"
+      onClick={[Function]}
+      src="editIcon.svg"
+    />
+  </div>
+</div>
+`;
