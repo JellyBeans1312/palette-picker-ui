@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddNewProjectForm should match the snapshot with all data passed in correctly 1`] = `
+<form
+  className="new-project-form"
+>
+  <div
+    className="align-form-items"
+  >
+    <input
+      className="project-name"
+      name="projectName"
+      onChange={[Function]}
+      placeholder="Enter a new project name!"
+      type="text"
+      value=""
+    />
+    <button
+      className="create-project-button"
+      onClick={[Function]}
+    >
+      Create Project
+    </button>
+  </div>
+</form>
+`;

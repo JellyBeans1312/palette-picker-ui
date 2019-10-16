@@ -16,7 +16,7 @@ export class AddNewProjectForm extends Component {
   }
 
   handleChange = e => {
-    this.setState({[e.target.name]: e.target.value})
+    this.setState({[e.target.name]: e.target.value});
   }
 
   handleSubmit = async e => {
@@ -26,7 +26,6 @@ export class AddNewProjectForm extends Component {
     }
     try {
       const project = await createProject(newProject);
-      console.log('PROJECT', project.id)
       this.props.addProject(this.state.projectName, project.id);
     } catch (error) {
       this.setState({ error: error.message })
