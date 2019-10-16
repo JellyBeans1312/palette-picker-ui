@@ -1,6 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ColorContainer }  from './ColorContainer';
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
 
 describe('ColorContainer', () => {
   let wrapper, mockUpdatePalette, mockGenerateNewColors;
