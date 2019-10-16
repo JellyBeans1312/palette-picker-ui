@@ -242,11 +242,14 @@ describe('createPalette', () => {
 });
 
 describe('deletePalette', () => {
-  let mockId, mockResponse;
+  let mockId, mockResponse, mockRequest;
 
   beforeEach(() => {
     mockResponse = {
       id: 1
+    }
+    mockRequest = {
+      method: 'DELETE'
     }
     mockId = 1
     window.fetch = jest.fn().mockImplementation(() => {
@@ -257,5 +260,34 @@ describe('deletePalette', () => {
     });
   });
 
-  it('should call fetch with the correct URL')
+  it('should call fetch with the correct URL', () => {
+    deletePalette(mockId);
+
+    expect(window.fetch).toHaveBeenCalledWith('https://palette-picker-be-eo-am.herokuapp.com/api/v1/palettes/1', mockRequest)
+  });
+
+  it('should return a 204 status if the deletion is successful', () => {
+    deletePalette(mockId)
+    .then(response => expect(response.status).toEqual(204))
+  });
+
+  it('should throw an error if the Promise.ok is false', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      });
+    });
+
+    expect(deletePalette(mockId)).rejects.toEqual(Error('There was an error deleting your palette. Please try again.'))
+  });
+
+  it('should throw an error if the Promise rejects', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject({
+        message: 'Error deleting your palette'
+      })
+    });
+
+    expect(deletePalette(mockId)).rejects.toEqual({ message: 'Error deleting your palette' })
+  });
 });
