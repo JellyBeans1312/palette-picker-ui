@@ -11,7 +11,7 @@ import './App.css';
 import ProjectContainer from '../ProjectContainer/ProjectContainer';
 import PropTypes from 'prop-types';
 
-class App extends Component {
+export class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -100,7 +100,7 @@ class App extends Component {
   }
 
   render() {
-    const { allProjects, project } = this.props;
+    const { project } = this.props;
     return (
       <main className='main'>
       <header className='header'>
@@ -108,8 +108,8 @@ class App extends Component {
       {project &&  
         <div className='update-project-name'>
             <p>{project.project_name}</p> 
-            <img src={editIcon} style={{ height: 30, width: 30}} onClick={() => this.props.updateProjectName(true)} />
-            <img src={xImage} style={{ height: 30, width: 30 }} onClick={() => this.props.removeCurrentProject()} />
+            <img src={editIcon} alt='edit' className='edit-button' style={{ height: 30, width: 30}} onClick={() => this.props.updateProjectName(true)} />
+            <img src={xImage} alt='delete' className='delete-button'style={{ height: 30, width: 30 }} onClick={() => this.props.removeCurrentProject()} />
           { this.props.editingProjectName &&
           <div>
             <input type='text' placeholder={project.project_name} value={this.state.editedProjectName} onChange={this.handleChange}/>

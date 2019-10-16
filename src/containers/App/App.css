@@ -27,3 +27,11 @@ h1 {
   display: flex;
   justify-content: center;
 }
+
+.edit-button {
+  padding-top: 10px
+}
+
+.delete-button {
+  padding-top: 10px
+}

@@ -1,4 +1,5 @@
 .color-container {
+  background-color: #ececec;
   border: 1px solid black;
   display: flex;
   height: 250px;

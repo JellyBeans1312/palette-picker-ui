@@ -6,7 +6,7 @@ import trashcan from '../../assets/trashcan.svg';
 import editIcon from '../../assets/editIcon.svg'
 import { deletePalette, deleteProject } from '../../util/apiCalls'
 
-const Project = ({props, palettes, addPalette, removePalette, removeProject, addProject}) => {
+export const Project = ({props, palettes, addPalette, removePalette, removeProject, addProject}) => {
   const displayPalettes = palettes.map(palette => {
     const { updated_at, created_at, palette_name, project_id, ...newPalette } = palette
     const { id, ...displayPalette } = newPalette
@@ -37,7 +37,7 @@ const Project = ({props, palettes, addPalette, removePalette, removeProject, add
           {project_name}
           <button onClick={() => addProject(project_name, id)}>Select this project</button>
         </div>
-      <img src={trashcan} className='project-button' style={{ height: 30, width: 30}} onClick={() => {deleteProject(id); removeProject(id)}}></img>
+      <img src={trashcan} alt='trashcan' className='project-button' style={{ height: 30, width: 30}} onClick={() => {deleteProject(id); removeProject(id)}}></img>
       </div>
       {displayPalettes}
     </div>
