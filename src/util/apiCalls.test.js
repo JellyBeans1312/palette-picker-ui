@@ -1,4 +1,4 @@
-import { createProject, getAllProjects, getAllPalettes } from './apiCalls';
+import { createProject, getAllProjects, getAllPalettes, createPalette, deletePalette } from './apiCalls';
 
 describe('createProject', () => {
   let mockResponse, mockRequest, mockNewProject;
@@ -73,13 +73,13 @@ describe('getAllProjects', () => {
     });
   });
 
-  it('should call fetch with the correct url', () => {
+  it('should call fetch with the correct url (HAPPY) :)', () => {
     getAllProjects();
 
     expect(window.fetch).toHaveBeenCalledWith('https://palette-picker-be-eo-am.herokuapp.com/api/v1/projects')
   });
 
-  it('should return an array of all projects from the database', () => {
+  it('should return an array of all projects from the database (HAPPY) :)', () => {
     getAllProjects()
     .then(results => expect(results).toEqual(mockResponse))
   });
@@ -94,7 +94,7 @@ describe('getAllProjects', () => {
     expect(getAllProjects()).rejects.toEqual(Error('There was an error retrieving your projects. Please try again.'))
   });
 
-  it('should throw an error if the promise rejects', () => {
+  it('should throw an error if the promise rejects (SAD) :(', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.reject({
         message: 'There was an error retrieving your projects. Please try again.'
@@ -143,18 +143,18 @@ describe('getAllPalettes', () => {
     });
   });
 
-  it('should call fetch with the correct url', () => {
+  it('should call fetch with the correct url (HAPPY) :)', () => {
     getAllPalettes();
 
     expect(window.fetch).toHaveBeenCalledWith('https://palette-picker-be-eo-am.herokuapp.com/api/v1/palettes')
   });
 
-  it('should return an array of palettes', () => {
+  it('should return an array of palettes (HAPPY) :)', () => {
     getAllPalettes()
     .then(results => expect(results).toEqual(mockResponse));
   });
 
-  it('should throw an error if the response.ok is false', () => {
+  it('should throw an error if the response.ok is false (SAD) :(', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         ok: false
@@ -164,7 +164,7 @@ describe('getAllPalettes', () => {
     expect(getAllPalettes()).rejects.toEqual(Error('There was an error retrieving your palettes. Please try again.'))
   });
 
-  it('should throw an error if the Promise rejects', () => {
+  it('should throw an error if the Promise rejects (SAD) :(', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.reject({
         message: 'Error retrieving your palettes.'
@@ -176,5 +176,86 @@ describe('getAllPalettes', () => {
 });
 
 describe('createPalette', () => {
+  let mockResponse, mockRequest, mockNewPalette;
 
+  beforeEach(() => {
+    mockNewPalette = {
+      id: 22,
+      palette_name: "test",
+      project_id: 50,
+      color_one: "#67cd51",
+      color_two: "#15fe0d",
+      color_three: "#507dbb",
+      color_four: "#784994",
+      color_five: "#2570dd",
+      created_at: "2019-10-15T01:54:46.520Z",
+      updated_at: "2019-10-15T01:54:46.520Z"
+    }
+    mockRequest = {
+      method: "POST",
+      body: undefined,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+    mockResponse = {
+      id: 1
+    }
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promse.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockResponse)
+      });
+    });
+  });
+
+  it('should call fetch with the correct url (HAPPY) :)', () => {
+    createPalette();
+
+    expect(window.fetch).toHaveBeenCalledWith('https://palette-picker-be-eo-am.herokuapp.com/api/v1/palettes', mockRequest)
+  });
+
+  it('should return the id of the created palette (HAPPY) :)', () => {
+    createPalette(mockNewPalette)
+    .then(results => expect(results).toEqual(mockResponse));
+  });
+
+  it('should throw an error if the response.ok is false (SAD) :(', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      });
+    });
+    
+    expect(createPalette(mockNewPalette)).rejects.toEqual(Error('There was an error creating your palette. Please try again.'))
+  });
+
+  it('should throw an error if the Promise rejects (SAD) :(', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject({
+        message: 'There was an issue creating your palette.'
+      })
+    });
+
+    expect(createPalette(mockNewPalette)).rejects.toEqual({ message: 'There was an issue creating your palette.' })
+  });
+});
+
+describe('deletePalette', () => {
+  let mockId, mockResponse;
+
+  beforeEach(() => {
+    mockResponse = {
+      id: 1
+    }
+    mockId = 1
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockResponse)
+      })
+    });
+  });
+
+  it('should call fetch with the correct URL')
 });

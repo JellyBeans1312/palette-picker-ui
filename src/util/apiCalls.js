@@ -36,7 +36,6 @@ export const getAllPalettes = async () => {
 }
 
 export const createPalette = async (newPalette) => {
-  console.log('NEW PALETTE', newPalette)
   const options = {
     method: "POST",
     body: JSON.stringify(newPalette),
