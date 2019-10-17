@@ -13,7 +13,9 @@ exports[`App should match snapshot 1`] = `
     <div
       className="update-project-name"
     >
-      <p />
+      <p>
+        asdf
+      </p>
       <img
         alt="edit"
         className="edit-button"
@@ -38,12 +40,44 @@ exports[`App should match snapshot 1`] = `
           }
         }
       />
+      <div>
+        <input
+          onChange={[Function]}
+          placeholder="asdf"
+          type="text"
+          value=""
+        />
+        <button
+          onClick={[Function]}
+        >
+          Update Project Name
+        </button>
+      </div>
     </div>
   </header>
   <ColorContainer
     colors={
       Array [
-        Object {},
+        Object {
+          "color": "#fff",
+          "isLocked": false,
+        },
+        Object {
+          "color": "#000",
+          "isLocked": false,
+        },
+        Object {
+          "color": "#ececec",
+          "isLocked": false,
+        },
+        Object {
+          "color": "#aeaeae",
+          "isLocked": false,
+        },
+        Object {
+          "color": "#d8d646",
+          "isLocked": false,
+        },
       ]
     }
     generateNewColors={[Function]}
