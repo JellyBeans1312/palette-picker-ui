@@ -33,4 +33,8 @@ Hone skills in:
 * Testing with Jest and Enzyme
 * CSS
 
+## Wireframe
+[Wireframe](./src/assets/palettte-picker-wireframe.jpg)
+
 ## Images
+
