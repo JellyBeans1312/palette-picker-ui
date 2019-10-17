@@ -8,4 +8,19 @@ describe('colorsReducer', () => {
 
     expect(result).toEqual(expected);
   });
+
+  it('should return the action.color if state.length === 5', () => {
+    let expected = '#fff';
+
+    let mockAction = {
+      type: 'SAVE_COLOR',
+      color: '#fff'
+    }
+
+    let result = colorsReducer([{}, {}, {}, {}, {}], mockAction);
+
+    expect(result).toEqual(expected);
+  });
+
+  it('should')
 });
