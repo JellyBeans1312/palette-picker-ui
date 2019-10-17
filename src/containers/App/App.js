@@ -130,7 +130,7 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   project: state.project,
   allProjects: state.allProjects,
   colors: state.colors,
@@ -138,7 +138,7 @@ const mapStateToProps = state => ({
   allPalettes: state.allPalettes
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   addAllProjects: allProjects => dispatch(addAllProjects(allProjects)),
   saveColor: color => dispatch(saveColor(color)),
   addAllPalettes: allPalettes => dispatch(addAllPalettes(allPalettes)),
