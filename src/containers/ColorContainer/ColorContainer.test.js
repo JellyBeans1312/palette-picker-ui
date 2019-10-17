@@ -1,10 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ColorContainer }  from './ColorContainer';
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-configure({ adapter: new Adapter() });
+import { ColorContainer, mapStateToProps }  from './ColorContainer';
 
 describe('ColorContainer', () => {
   let wrapper, mockUpdatePalette, mockGenerateNewColors;
@@ -25,6 +21,7 @@ describe('ColorContainer', () => {
       }
       generateNewColors={mockGenerateNewColors}
       updatePalette={mockUpdatePalette}
+      editingPalette={true}
     />);
   });
 
@@ -43,5 +40,33 @@ describe('ColorContainer', () => {
     wrapper.find('button').at(1).simulate('click');
 
     expect(mockUpdatePalette).toHaveBeenCalled();
+  });
+
+  describe('mapStateToProps', () => {
+
+    it('should return an object with the correct parts of state', () => {
+      let mockState = {
+        project: '',
+        allProjects: [
+          {
+            id: 1,
+            project_name: 'test'
+          }
+        ],
+        colors: [
+          {color: '#000'}
+        ],
+        allPalettes: [
+          {name: 'testPalette', color_one: '#fff'}
+        ],
+        editingProjectName: false,
+        editingPalette: false
+      }
+      let expected = {editingPalette: false}
+  
+      let mappedProps = mapStateToProps(mockState);
+  
+      expect(mappedProps).toEqual(expected)
+    });
   });
 });
