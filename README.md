@@ -37,4 +37,5 @@ Hone skills in:
 ![Wireframe](./src/assets/palette-picker-wireframe.jpg)
 
 ## Images
+![Screenshot](./src/assets/palettte-picker-screenshot.png)
 
