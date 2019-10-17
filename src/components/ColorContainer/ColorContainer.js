@@ -1,9 +1,10 @@
 import React from 'react';
 import ColorRhombus from '../ColorRhombus/ColorRhombus';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import './ColorContainer.css';
 
-export const ColorContainer = ({ generateNewColors, colors, updatePalette }) => {
+export const ColorContainer = ({ generateNewColors, colors, updatePalette, editingPalette }) => {
   const colorRhombi = colors.map(color => {
     return <ColorRhombus key={color.color} color={color.color}/>
   });
@@ -19,13 +20,17 @@ export const ColorContainer = ({ generateNewColors, colors, updatePalette }) => 
         >
         Generate a new palette!
         </button>
-        <button className='update-palette-button' onClick={updatePalette}>Update Palette</button>
+        {editingPalette && <button className='update-palette-button' onClick={updatePalette}>Update Palette</button>}
       </div>
     </section>
   )
 }
 
-export default ColorContainer;
+export const mapStateToProps = state => ({
+  editingPalette: state.editingPalette
+});
+
+export default connect(mapStateToProps)(ColorContainer);
 
 ColorContainer.propTypes = {
   generateNewColors: PropTypes.func,

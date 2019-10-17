@@ -47,3 +47,8 @@ export const updateProjectName = status => ({
 export const removeCurrentProject = () => ({
   type: 'REMOVE_CURRENT_PROJECT',
 });
+
+export const editingPalette = (status) => ({
+  type: 'EDITING_PALETTE',
+  status
+});

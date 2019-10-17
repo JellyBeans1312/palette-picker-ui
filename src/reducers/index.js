@@ -1,14 +1,15 @@
 import { combineReducers } from 'redux';
 import { projectReducer, allProjectsReducer, editProjectNameReducer } from './projectReducer';
 import { colorsReducer } from './colorsReducer';
-import { palettesReducer } from './palettesReducer'
+import { palettesReducer, editingPaletteReducer } from './palettesReducer'
 
 const rootReducer = combineReducers({
   project: projectReducer,
   allProjects: allProjectsReducer,
   colors: colorsReducer,
   allPalettes: palettesReducer,
-  editingProjectName: editProjectNameReducer
+  editingProjectName: editProjectNameReducer,
+  editingPalette: editingPaletteReducer
 });
 
 export default rootReducer;
