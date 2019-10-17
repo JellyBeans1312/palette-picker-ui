@@ -34,7 +34,7 @@ Hone skills in:
 * CSS
 
 ## Wireframe
-![Wireframe](./src/assets/palettte-picker-wireframe.jpg)
+![Wireframe](./src/assets/palette-picker-wireframe.jpg)
 
 ## Images
 
