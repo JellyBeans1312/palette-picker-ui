@@ -37,12 +37,6 @@ exports[`ColorContainer should match the snapshot with all data passed in correc
     >
       Generate a new palette!
     </button>
-    <button
-      className="update-palette-button"
-      onClick={[MockFunction]}
-    >
-      Update Palette
-    </button>
   </div>
 </section>
 `;

@@ -55,7 +55,7 @@ exports[`App should match snapshot 1`] = `
       </div>
     </div>
   </header>
-  <ColorContainer
+  <Connect(ColorContainer)
     colors={
       Array [
         Object {
