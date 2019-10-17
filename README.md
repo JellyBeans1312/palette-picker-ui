@@ -38,3 +38,4 @@ Hone skills in:
 
 ## Images
 ![Screenshot](./src/assets/palettte-picker-screenshot.png)
+
