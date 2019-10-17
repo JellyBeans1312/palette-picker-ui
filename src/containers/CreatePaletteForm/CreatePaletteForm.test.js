@@ -2,6 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { CreatePaletteForm, mapDispatchToProps, mapStateToProps } from './CreatePaletteForm';
 import { addAllProjects, addAllPalettes, addPalette, addProject } from '../../actions';
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
 
 describe('Create Palette Form', () => {
   let wrapper;

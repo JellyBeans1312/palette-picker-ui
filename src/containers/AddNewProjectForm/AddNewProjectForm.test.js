@@ -2,6 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { addProject, addAllProjects } from '../../actions/index';
 import { AddNewProjectForm, mapDispatchToProps } from './AddNewProjectForm';
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
 
 describe('AddNewProjectForm', () => {
   let wrapper;

@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - "node"
+deploy: 
+  provider: heroku
+  app: palette-picker-be-eo-am
+  api_key:
