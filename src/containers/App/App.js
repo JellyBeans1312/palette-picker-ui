@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ColorContainer from '../../components/ColorContainer/ColorContainer';
+import ColorContainer from '../../containers/ColorContainer/ColorContainer';
 import AddNewProjectForm from '../AddNewProjectForm/AddNewProjectForm';
 import CreatePaletteForm from '../CreatePaletteForm/CreatePaletteForm';
 import { connect } from 'react-redux';
