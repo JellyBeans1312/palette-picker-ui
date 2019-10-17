@@ -1,12 +1,12 @@
 import React from 'react';
 import './Project.css';
-import { addPalette, removePalette, removeProject, addProject } from '../../actions';
+import { addPalette, removePalette, removeProject, addProject, editingPalette } from '../../actions';
 import { connect } from 'react-redux';
 import trashcan from '../../assets/trashcan.svg';
 import editIcon from '../../assets/editIcon.svg'
 import { deletePalette, deleteProject } from '../../util/apiCalls'
 
-export const Project = ({props, palettes, addPalette, removePalette, removeProject, addProject}) => {
+export const Project = ({props, palettes, addPalette, removePalette, removeProject, addProject, editingPalette }) => {
   const displayPalettes = palettes.map(palette => {
     const { updated_at, created_at, palette_name, project_id, ...newPalette } = palette
     const { id, ...displayPalette } = newPalette
@@ -22,8 +22,7 @@ export const Project = ({props, palettes, addPalette, removePalette, removeProje
           </li>
         </ul>
         <img src={trashcan} alt='trashcan' className='palette-buttons' onClick={() => {deletePalette(palette.id); removePalette(palette.id)}}></img>
-        <img src={editIcon} alt='edit' className='palette-buttons' onClick={() => addPalette(newPalette)}/>
-
+        <img src={editIcon} alt='edit' className='palette-buttons' onClick={() => {addPalette(newPalette); editingPalette(true)}}/>
       </div>
     )
   })
@@ -48,7 +47,8 @@ export const mapDispatchToProps = dispatch => ({
   addPalette: palette => dispatch(addPalette(palette)),
   removePalette: id => dispatch(removePalette(id)),
   removeProject: id => dispatch(removeProject(id)),
-  addProject: (project_name, id) => dispatch(addProject(project_name, id))
+  addProject: (project_name, id) => dispatch(addProject(project_name, id)),
+  editingPalette: status => dispatch(editingPalette(status))
 });
 
 export default connect(null, mapDispatchToProps)(Project);

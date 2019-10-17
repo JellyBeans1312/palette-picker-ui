@@ -5,6 +5,15 @@ export const palettesReducer = (state = [], action) => {
     case 'REMOVE_PALETTE':
       return state.filter(palette => palette.id !== action.id)
     default: 
-      return state
+      return state;
+  }
+}
+
+export const editingPaletteReducer = (state = false, action) => {
+  switch(action.type) {
+    case 'EDITING_PALETTE':
+      return action.status;
+    default:
+      return state;
   }
 }
