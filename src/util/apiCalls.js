@@ -115,6 +115,5 @@ export const searchSpecificPalette = async (paletteName) => {
   }
   const data = await response.json();
   const { id, palette_name, created_at, updated_at, ...newPalette } = data[0];
-  console.log(newPalette)
   return newPalette
 }

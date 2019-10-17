@@ -1,4 +1,4 @@
-import { createProject, getAllProjects, getAllPalettes, createPalette, deletePalette, deleteProject, patchProject, patchPalette } from './apiCalls';
+import { createProject, getAllProjects, getAllPalettes, createPalette, deletePalette, deleteProject, patchProject, patchPalette, searchSpecificPalette } from './apiCalls';
 
 describe('createProject', () => {
   let mockResponse, mockRequest, mockNewProject;
@@ -442,7 +442,7 @@ describe('patchPalette', () => {
     .then(results => expect(results).toEqual(mockResponse))
   });
 
-  it('should throw an error if the response.ok is false', () => {
+  it('should throw an error if the response.ok is false (SAD) :(', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         ok: false
@@ -452,7 +452,7 @@ describe('patchPalette', () => {
     expect(patchPalette(mockNewPalette)).rejects.toEqual(Error('There was an error editing your palette. Please try again.'))
   });
 
-  it('should throw an error if the Promise rejects', () => {
+  it('should throw an error if the Promise rejects (SAD) :(', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.reject({
         message: 'Error updating your palette.'
@@ -460,6 +460,61 @@ describe('patchPalette', () => {
     });
 
     expect(patchPalette(mockNewPalette)).rejects.toEqual({ message: 'Error updating your palette.'});
+  });
+});
+
+describe('searchSpecificPalette', () => {
+  let mockResponse, mockPaletteName;
+
+  beforeEach(() => {
+    mockResponse = {
+      id: 22,
+      palette_name: "test",
+      project_id: 50,
+      color_one: "#67cd51",
+      color_two: "#15fe0d",
+      color_three: "#507dbb",
+      color_four: "#784994",
+      color_five: "#2570dd"
+    }
+    mockPaletteName = 'test';
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockResponse)
+      });
+    });
+  });
+
+  it('should call fetch with the correct url (HAPPY) :)', () => {
+    searchSpecificPalette(mockPaletteName);
+
+    expect(window.fetch).toHaveBeenCalledWith('https://palette-picker-be-eo-am.herokuapp.com/api/v1/palettes?palette_name=test');
+  });
+
+  it('should return the found palette if the request is successful (HAPPY) :)', () => {
+    searchSpecificPalette(mockPaletteName)
+    .then(results => expect(results).toEqual(mockResponse))
+  });
+
+  it('should throw an error if the response.ok is false (SAD) :(', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      });
+    });
+
+    expect(searchSpecificPalette(mockPaletteName)).rejects.toEqual(Error('There was an error getting your palette. Please try again.'));
+  });
+
+  it('should throw an error if the Promise rejects', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject({
+        message: 'Can\'t find pallete'
+      });
+    });
+
+    expect(searchSpecificPalette(mockPaletteName)).rejects.toEqual({ message: 'Can\'t find pallete' });
   });
 });
 
