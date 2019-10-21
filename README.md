@@ -9,7 +9,7 @@ Palette Picker is an application that allows users to create projects and palett
 
 ## Getting started
 * Clone down the repo and install the dependencies with `npm install`.
-* Run `npm start` and visit (http://localhost:3000/)[http://localhost:3000] to view the application in the browser.
+* Run `npm start` and visit http://localhost:3000 to view the application in the browser.
 * Run the test suite with `npm test`.
 
 ## Learning goals
@@ -37,5 +37,5 @@ Hone skills in:
 ![Wireframe](./src/assets/palette-picker-wireframe.jpg)
 
 ## Images
-![Screenshot](./src/assets/palettte-picker-screenshot.png)
+![Screenshot](./src/assets/palette-picker-screenshot.png)
 
