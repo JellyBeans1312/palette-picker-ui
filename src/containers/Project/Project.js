@@ -12,12 +12,12 @@ export const Project = ({props, palettes, addPalette, removePalette, removeProje
     const { id, ...displayPalette } = newPalette
     let keys = Object.keys(displayPalette);
     return  (
-      <div className='small-palettes-container'>
+      <div className='small-palettes-container' key={newPalette[keys[0]]}>
         <ul className='small-palettes-ul'>
           <li className='small-palettes'>
             <div>{palette.palette_name}</div>
             { keys.map(key => {          
-              return <div className='palette-colors' style={{ backgroundColor: newPalette[key]}}></div>
+              return <div className='palette-colors' style={{ backgroundColor: newPalette[key]}} key={newPalette[key]}></div>
             })}
           </li>
         </ul>

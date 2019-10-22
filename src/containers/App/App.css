@@ -15,7 +15,8 @@
 
 .header {
   justify-content: center;
-  height: 10%;
+  height: 10vh;
+  padding: 15px 0px;
   text-align: center;
   width: 100%;
 }

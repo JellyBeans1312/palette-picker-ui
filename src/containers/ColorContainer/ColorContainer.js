@@ -6,7 +6,7 @@ import './ColorContainer.css';
 
 export const ColorContainer = ({ generateNewColors, colors, updatePalette, editingPalette }) => {
   const colorRhombi = colors.map(color => {
-    return <ColorRhombus key={color.color} color={color.color}/>
+    return <ColorRhombus key={color.color} color={color.color} isLocked={color.isLocked} />
   });
 
   return (
