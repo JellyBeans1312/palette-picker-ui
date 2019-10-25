@@ -3,7 +3,7 @@
   background-color:#D3D3D3;
   flex-wrap: wrap;
   font-family: Roboto;
-  height:100vh;
+  height: 101vh;
   width: 100%;
 }
 
@@ -15,7 +15,7 @@
 
 .header {
   justify-content: center;
-  height: 10vh;
+  height: 8vh;
   padding: 15px 0px;
   text-align: center;
   width: 100%;
