@@ -58,7 +58,6 @@ export class App extends Component {
   findSpecificPalette = () => {
     const { allPalettes, colors } = this.props
     const specificPalette = allPalettes.filter(palette => {
-      console.log(colors)
       const color = colors.map(color => {
         return color.id
       })
